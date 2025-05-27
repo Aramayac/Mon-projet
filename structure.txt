@@ -1,0 +1,63 @@
+Structure du dossier
+Le numéro de série du volume est C27C-E23E
+C:.
+¦   ajouter_offre.php
+¦   completer_profil.php
+¦   connexion.php
+¦   connexionbase.php
+¦   connexion_candidat.php
+¦   connexion_recruteur.php
+¦   footer.php
+¦   header.php
+¦   header11.php
+¦   header2.php
+¦   header3.php
+¦   header_offres.php
+¦   index.php
+¦   inscri.php
+¦   inscription.php
+¦   inscription_candidat.php
+¦   inscription_recruteur.php
+¦   mdp_oublie_recruteur.php
+¦   modifier_profil.php
+¦   mot_de_passe_oublie.php
+¦   offres.php
+¦   offre_emploi.php
+¦   postuler.php
+¦   reinitialisation_mdp_recruteur.php
+¦   reinitialise_mdp.php
+¦   structure.txt
+¦   style.css
+¦   tableau_admin.php
+¦   tableau_candidat.php
+¦   tableau_de_bord.php
+¦   tableau_recruteur.php
+¦   voir_candidature.php
+¦   
++---dossier
+¦   +---Cahier_de_charge
+¦   ¦       Cahier.docx
+¦   ¦       
+¦   +---cv
++---igm
+¦       3022.jpg
+¦       asso7.jpg
+¦       image.jpg
+¦       p1.jpg
+¦       p2.jpg
+¦       p4.png
+¦       p5.png
+¦       pp.jpg
+¦       s1.jpg
+¦       s2.jpg
+¦       s3.jpg
+¦       s4.jpg
+¦       s5.jpg
+¦       s6.jpg
+¦       
++---uploads
+        logo_683376e820df12.78617756.jpg
+        logo_683386d97aea73.90511519.jpg
+        logo_6833876993cff5.38838432.jpg
+        logo_6833877201abb0.23009696.jpg
+        

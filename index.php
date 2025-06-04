@@ -12,22 +12,6 @@ require_once __DIR__.'/includes/header.php';
 // echo $_SERVER['PHP_SELF']. "<br>";
 // echo $_SERVER['QUERY_STRING']. "<br>";
 // echo $_SERVER['REQUEST_METHOD']. "<br>";
-
-//Récupération des 5 offres les plus récentes
-// $req = $bdd->query("
-//     SELECT o.id_offre, o.titre, o.description, o.lieu, o.date_publication, r.nom_entreprise 
-//     FROM offres_emploi o 
-//     JOIN recruteurs r ON o.id_recruteur = r.id_recruteur 
-//     ORDER BY o.date_publication DESC 
-//     LIMIT 5
-// ");
-// $req = $bdd->query("
-//     SELECT o.id_offre, o.titre, o.description, o.lieu, o.date_publication, r.nom_entreprise 
-//     FROM offres_emploi o 
-//     LEFT JOIN recruteurs r ON o.id_recruteur = r.id_recruteur 
-//     ORDER BY o.date_publication DESC 
-//     LIMIT 5
-// ");
 $req=$bdd->query("
 SELECT * FROM offres_emploi
 INNER JOIN recruteurs r ON offres_emploi.id_recruteur = r.id_recruteur
@@ -70,7 +54,7 @@ $offres = $req->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <?php foreach ($offres as $offre): ?>
             <?php
-            $logo = !empty($offre['logo']) ? 'uploads/' . htmlspecialchars($offre['logo']) : 'igm/3022.jpg';
+            $logo = !empty($offre['logo']) ? '/projet_Rabya/recruteurs/dossier/' . htmlspecialchars($offre['logo']) : 'igm/3022.jpg';
             ?>
             <div class="col-lg-6 mb-5 ">
                 <div class="card position-relative shadow-sm border-0 h-100 pt-4 bg-primary bg-opacity-10">

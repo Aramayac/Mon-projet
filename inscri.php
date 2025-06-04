@@ -72,7 +72,7 @@ include_once __DIR__.'/includes/header2.php';
         <!-- Candidat -->
         <div class="registration-box">
             <h3><a href="../projet_Rabya/candidats/inscription_candidat.php">Candidat</a></h3>
-                            <img src="igm/p4.png" alt="Candidate">
+                            <img src="igm/r1.jpg" alt="Candidate">
                         <div class="block-links">
                             <a href="../projet_Rabya/candidats/inscription_candidat.php" class="btn btn-primary">Cliquez ici</a>
                         </div>
@@ -81,7 +81,7 @@ include_once __DIR__.'/includes/header2.php';
         <div class="registration-box">
            <h3><a href="/projet_Rabya/recruteurs/inscription_recruteur.php">Recruteur</a></h3>
 
-                <picture>   <img src="igm/p5.png" alt="Recruiter"> </picture> 
+                <picture>   <img src="igm/r3.jpg" alt="Recruiter"> </picture> 
                      <div class="block-links">
                             <a href="/projet_Rabya/recruteurs/inscription_recruteur.php" class="btn btn-primary">Cliquez ici</a>
                   </div>

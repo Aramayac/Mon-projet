@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'configuration/connexionbase.php';
+require_once __DIR__.'/../configuration/connexionbase.php';
 
 // Vérifier que l'utilisateur est un recruteur
 if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
@@ -50,8 +50,7 @@ $candidatures = $stmt->fetchAll();
 <body class="bg-light">
 <div class="container py-5">
     <h2 class="mb-4 text-primary"><i class="bi bi-people-fill me-2"></i>Candidatures pour : <?= htmlspecialchars($offre['titre']) ?></h2>
-    <a href="tableau_recruteur.php" class="btn btn-secondary mb-4"><i class="bi bi-arrow-left"></i> Retour au tableau de bord</a>
-
+    <a href="/projet_Rabya/candidats/tableau_candidat.php" class="btn btn-secondary mb-4"><i class="bi bi-arrow-left"></i> Retour au tableau de bord</a>
     <?php if (count($candidatures) > 0): ?>
         <div class="table-responsive">
             <table class="table table-bordered align-middle">

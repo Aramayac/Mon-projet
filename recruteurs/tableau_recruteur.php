@@ -14,7 +14,7 @@ $recruteur = $_SESSION['utilisateur'];
 $message_logo = "";
 if (isset($_POST['changer_logo']) && isset($_FILES['nouveau_logo']) && $_FILES['nouveau_logo']['error'] === 0) {// Vérifie que le formulaire a été soumis et qu'un fichier a été uploadé
     // Vérifie que le dossier de destination existe, sinon le crée
-    $dossier = 'dossier/';
+    $dossier =  'dossier/';
     if (!is_dir($dossier)) mkdir($dossier, 0777, true);
     $extension = strtolower(pathinfo($_FILES['nouveau_logo']['name'], PATHINFO_EXTENSION));
     $types_valides = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
@@ -47,7 +47,7 @@ $sql = $bdd->prepare("SELECT * FROM offres_emploi WHERE id_recruteur = ? ORDER B
 $sql->execute([$recruteur['id']]);
 $offres = $sql->fetchAll();
 
-$logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteur['logo']) : 'img/logo_default.png';
+$logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteur['logo']) : 'img/3022.png'; // Chemin du logo, avec un logo par défaut si aucun n'est défini
 ?>
 <!DOCTYPE html>
 <html lang="fr">

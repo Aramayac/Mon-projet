@@ -21,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         body {
             background: url('/projet_Rabya/igm/3022.jpg') no-repeat center center/cover;
-            background-size: cover;
+            
+
+
         }
     </style>
 </head>

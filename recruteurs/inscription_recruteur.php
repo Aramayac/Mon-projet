@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Gestion du logo (optionnel)
     $logo = null;
     if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
-        $dossier = 'uploads/';
+        $dossier = __DIR__ . '/recruteur/dossier/';
         if (!is_dir($dossier)) mkdir($dossier, 0777, true); // Crée le dossier s'il n'existe pas
 
         $extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));

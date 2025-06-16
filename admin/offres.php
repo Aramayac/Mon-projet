@@ -25,6 +25,9 @@ $offres = $bdd->query("SELECT o.*, r.nom_entreprise FROM offres_emploi o JOIN re
             font-size: 1.5rem;
             margin-right: 10px;
         }
+        h3{
+            margin-top: 10%;
+        }
     </style>
 </head>
 <body>

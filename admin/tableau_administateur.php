@@ -3,11 +3,11 @@ session_start();
 require_once __DIR__ . '/../configuration/connexionbase.php';
 if (!isset($_SESSION['admin_id'])) {
     header('Location: /projet_Rabya/admin/connexion_adminstrateur.php'); exit();
-}
-$nb_candidats = $bdd->query("SELECT COUNT(*) FROM candidats")->fetchColumn();
-$nb_recruteurs = $bdd->query("SELECT COUNT(*) FROM recruteurs")->fetchColumn();
-$nb_offres = $bdd->query("SELECT COUNT(*) FROM offres_emploi")->fetchColumn();
-$nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn();
+}// Fatima arama001
+$nb_candidats = $bdd->query("SELECT COUNT(*) FROM candidats")->fetchColumn();// nombre de candidats 
+$nb_recruteurs = $bdd->query("SELECT COUNT(*) FROM recruteurs")->fetchColumn();// nombre de recruteurs
+$nb_offres = $bdd->query("SELECT COUNT(*) FROM offres_emploi")->fetchColumn();// nombre d'offres d'emploi
+$nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn();// nombre de candidatures
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,6 +29,7 @@ $nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn
             margin-bottom: 2rem;
             text-align: center;
             color: #343a40;
+            margin-top: 9%;
         }
         .card {
             border: none;
@@ -107,7 +108,7 @@ $nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn
     const dashboardChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Candidats', 'Recruteurs', 'Offres', 'Candidatures'],
+            labels: ['Candidats', 'Recruteurs', 'Offres', 'Candidatures'],// les étiquettes 
             datasets: [{
                 data: [<?= $nb_candidats ?>, <?= $nb_recruteurs ?>, <?= $nb_offres ?>, <?= $nb_candidatures ?>],
                 backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545']

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = trim($_POST['nom']);
     $prenom = trim($_POST['prenom']);
     $email = trim($_POST['email']);
-    $telephone = trim($_POST['telephone']);
+    $addresse = trim($_POST['addresse']);
     $mot_de_passe = $_POST['mot_de_passe'];
     // Vérification de l'email existant
     $stmt = $bdd->prepare("SELECT * FROM candidats WHERE email = ?");
@@ -23,14 +23,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nom)) $errors['nom'] = "Le nom est requis.";
     if (empty($prenom)) $errors['prenom'] = "Le prénom est requis.";
     if (empty($email)) $errors['email'] = "L'email est requis.";
-    if (empty($telephone)) $errors['telephone'] = "Le téléphone est requis.";
+    if (empty($addresse)) $errors['addresse'] = "L'adresse est requis.";
     if (empty($mot_de_passe)) $errors['mot_de_passe'] = "Le mot de passe est requis.";
 
     if (empty($errors)) {
-        $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-        $req = $bdd->prepare("INSERT INTO candidats (nom, prenom, email,telephone, mot_de_passe) VALUES (?, ?, ?, ?, ?)");
-        $req->execute([$nom, $prenom, $email,$telephone, $mot_de_passe_hash]);
-        $message = "Compte candidat créé avec succès.";
+        $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);// Hachage du mot de passe
+        // Insertion du candidat dans la base de données
+        $req = $bdd->prepare("INSERT INTO candidats (nom, prenom, email,addresse, mot_de_passe) VALUES (?, ?, ?, ?, ?)");
+        $req->execute([$nom, $prenom, $email,$addresse, $mot_de_passe_hash]);// Exécution de la requête
+        $message = "Compte candidat créé avec succès.";// Message de succès
     }
 }
 ?>
@@ -70,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <i class="bi bi-person-plus me-2"></i> Inscription Candidat
                 </div>
                 <div class="card-body px-5 py-4">
-                    <?php if (!empty($errors)): ?>
+                    <?php if (!empty($errors)): ?> <!-- Affichage des erreurs -->
                         <div class="alert alert-danger">
                             <ul>
                                 <?php foreach ($errors as $error): ?>
-                                    <li><?= htmlspecialchars($error) ?></li>
+                                    <li><?= htmlspecialchars($error) ?></li> <!-- Sécurisation de l'affichage -->
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -97,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="email" class="form-control" name="email">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Téléphone</label>
-                            <input type="number" class="form-control" name="telephone">
+                            <label class="form-label">Addresse</label>
+                            <input type="text" class="form-control" name="addresse">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mot de passe</label>

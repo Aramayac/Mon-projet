@@ -10,6 +10,18 @@ if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'candidat') {
 
 $candidat = $_SESSION['utilisateur'];
 
+// Vérifier que le profil est complet
+$profil_check = $bdd->prepare("SELECT * FROM profils_candidats WHERE id_candidat = ?");
+$profil_check->execute([$candidat['id']]);
+$profil = $profil_check->fetch();
+
+// Ici, on considère qu'il faut avoir un CV et des compétences renseignées
+if (!$profil || empty($profil['cv']) || empty($profil['competences'])) {
+    // Redirige avec un message d'erreur (à gérer dans la vue)
+    header("Location: /projet_Rabya/candidats/tableau_candidat.php?message=profil_incomplet");
+    exit();
+}
+
 // Vérifier que l'id_offre est bien envoyé en POST
 if (!isset($_POST['id_offre']) || !is_numeric($_POST['id_offre'])) {
     header("Location: /projet_Rabya/candidats/tableau_candidat.php");
@@ -34,14 +46,13 @@ $stmt->execute([$candidat['id'], $id_offre]);
 $deja_postule = $stmt->fetchColumn();
 
 if ($deja_postule > 0) {
-    // Déjà postulé, on revient à la liste avec un message
     header("Location: /projet_Rabya/candidats/tableau_candidat.php?message=deja_postule");
     exit();
 }
 
 // Insérer la candidature
 $stmt = $bdd->prepare("INSERT INTO candidatures (id_candidat, id_offre, date_candidature, statut) VALUES (?, ?, NOW(), ?)");
-if ($stmt->execute([$candidat['id'], $id_offre, 'en attente'])) {
+if ($stmt->execute([$candidat['id'], $id_offre, 'en_cours'])) {
     header("Location: /projet_Rabya/candidats/tableau_candidat.php?message=success");
     exit();
 } else {

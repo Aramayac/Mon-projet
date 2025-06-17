@@ -4,43 +4,14 @@ $message = "";
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom_entreprise = trim($_POST['nom_entreprise']);
-    $secteur = trim($_POST['secteur']);
-    $email = trim($_POST['email']);
-    $adresse = trim($_POST['adresse']);
-    $telephone = trim($_POST['telephone']);
-    $description = trim($_POST['description']);
-    $mot_de_passe = $_POST['mot_de_passe'];
-
-    // Gestion du logo (optionnel)
-    $logo = null;
-    if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
-        $dossier = __DIR__ . '/dossier/';
-        if (!is_dir($dossier)) mkdir($dossier, 0777, true); // Crée le dossier s'il n'existe pas
-
-        $extension = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
-        $nom_fichier = uniqid('logo_', true) . '.' . $extension;
-        $chemin = $dossier . $nom_fichier;
-
-        // On vérifie que c'est bien une image
-        $types_valides = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-        if (in_array($extension, $types_valides) && getimagesize($_FILES['logo']['tmp_name'])) {
-            if (move_uploaded_file($_FILES['logo']['tmp_name'], $chemin)) {
-                $logo = $nom_fichier;
-            } else {
-                $errors['logo'] = "Erreur lors de l'envoi du logo.";
-            }
-        } elseif ($_FILES['logo']['name'] != '') {
-            $errors['logo'] = "Le fichier doit être une image (jpg, png, gif, webp).";
-        }
-    }
-
-    // Vérification de l'unicité de l'email
-    $stmt = $bdd->prepare("SELECT * FROM recruteurs WHERE email = ?");
-    $stmt->execute([$email]);
-    if ($stmt->rowCount() > 0) {
-        $errors['email'] = "L'email est déjà utilisé.";
-    }
+    // Vérification stricte avant d'utiliser les données
+    $nom_entreprise = isset($_POST['nom_entreprise']) ? trim($_POST['nom_entreprise']) : '';
+    $secteur = isset($_POST['secteur']) ? trim($_POST['secteur']) : '';
+    $email = isset($_POST['email']) ? strtolower(trim($_POST['email'])) : ''; // Email toujours en minuscules
+    $adresse = isset($_POST['adresse']) ? trim($_POST['adresse']) : '';
+    $telephone = isset($_POST['telephone']) ? trim($_POST['telephone']) : '';
+    $description = isset($_POST['description']) ? trim($_POST['description']) : '';
+    $mot_de_passe = isset($_POST['mot_de_passe']) ? $_POST['mot_de_passe'] : '';
 
     // Vérification des champs requis
     if (empty($nom_entreprise)) $errors['nom_entreprise'] = "Le nom de l'entreprise est requis.";
@@ -48,18 +19,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email)) $errors['email'] = "L'email est requis.";
     if (empty($adresse)) $errors['adresse'] = "L'adresse est requise.";
     if (empty($telephone)) $errors['telephone'] = "Le téléphone est requis.";
-    if (empty($description)) $errors['description'] =  "La description est requise.";
+    if (empty($description)) $errors['description'] = "La description est requise.";
     if (empty($mot_de_passe)) $errors['mot_de_passe'] = "Le mot de passe est requis.";
     if (strlen($mot_de_passe) < 8) $errors['mot_de_passe'] = "Le mot de passe doit contenir au moins 8 caractères.";
 
+    // Vérification de l'unicité de l'email en base (sans distinction majuscule/minuscule)
+    $stmt = $bdd->prepare("SELECT id_recruteur FROM recruteurs WHERE LOWER(email) = LOWER(?)");
+    $stmt->execute([$email]);
+    if ($stmt->rowCount() > 0) {
+        $errors['email'] = "Cet email est déjà utilisé.";
+    }
+
     if (empty($errors)) {
         $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-        $req = $bdd->prepare("INSERT INTO recruteurs (nom_entreprise, secteur, email, adresse, telephone,description, mot_de_passe, logo)
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $req->execute([$nom_entreprise, $secteur, $email, $adresse, $telephone, $description, $mot_de_passe_hash, $logo]);
-        $message = "Compte recruteur créé avec succès.";
+        $req = $bdd->prepare("INSERT INTO recruteurs (nom_entreprise, secteur, email, adresse, telephone, description, mot_de_passe) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $req->execute([$nom_entreprise, $secteur, $email, $adresse, $telephone, $description, $mot_de_passe_hash]);
+        $message = " Compte recruteur créé avec succès.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>

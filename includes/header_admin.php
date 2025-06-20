@@ -20,7 +20,7 @@
             padding: 20px;
         }
         .nav-item a {
-            color: white !important;
+            color: rgba(255, 255, 255, 0.9);
             font-weight: bold;
             font-size: large;
         }
@@ -39,7 +39,7 @@
 
     </style>
 </body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-transparent shadow navbar-fixed">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent shadow navbar-fixed fixed-top ">
     <div class="container">
         <a class="navbar-brand fw-bold" href="tableau_administateur.php">
             <i class="bi bi-speedometer2"></i> Tableau de bord Administrateur
@@ -70,22 +70,4 @@
 </nav>
 
 </body>
-<script>
-    let lastScrollTop = 0;
-    const navbar = document.querySelector(".navbar");
-
-    window.addEventListener("scroll", function() {
-        let scrollTop = window.scrollY;
-        
-        if (scrollTop > lastScrollTop) {
-            // Quand on descend -> Fixe en haut
-            navbar.classList.add("navbar-scrolled");
-        } else if (scrollTop < 50) {
-            // Quand on remonte -> Retour à sa place
-            navbar.classList.remove("navbar-scrolled");
-        }
-        
-        lastScrollTop = scrollTop;
-    });
-</script>
 </html>

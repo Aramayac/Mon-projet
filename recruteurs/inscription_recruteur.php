@@ -3,6 +3,31 @@ require_once __DIR__ . '/../configuration/connexionbase.php';
 $message = "";
 $errors = [];
 
+// traitement du logo 
+$logo_path = null; // Par défaut
+
+if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {// Vérification de l'upload sans erreur
+    $file_tmp = $_FILES['logo']['tmp_name'];// Chemin temporaire du fichier uploadé
+    $file_name = basename($_FILES['logo']['name']);
+    $extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));// Récupération de l'extension du fichier
+    $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+    if (in_array($extension, $allowed)) {// Vérification de l'extension autorisée
+        // Renomme pour éviter les doublons
+        $file_name = uniqid('logo_', true) . '.' . $extension;// Génération d'un nom de fichier unique
+        $dest = __DIR__ . "/dossier/" . $file_name;// Chemin de destination du fichier uploadé
+        if (!is_dir(__DIR__ . '/dossier/')) {//
+            mkdir(__DIR__ . '/dossier/', 0777, true);//
+        }
+        if (move_uploaded_file($file_tmp, $dest)) {
+            // Ici, ENREGISTRE SEULEMENT le nom du fichier en base, pas le chemin complet
+            $logo_path = $file_name;
+        }
+    } else {
+        $errors['logo'] = "Format de logo invalide (jpg, png, gif, webp autorisés).";
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérification stricte avant d'utiliser les données
     $nom_entreprise = isset($_POST['nom_entreprise']) ? trim($_POST['nom_entreprise']) : '';
@@ -32,9 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($errors)) {
         $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-        $req = $bdd->prepare("INSERT INTO recruteurs (nom_entreprise, secteur, email, adresse, telephone, description, mot_de_passe) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $req->execute([$nom_entreprise, $secteur, $email, $adresse, $telephone, $description, $mot_de_passe_hash]);
+        $req = $bdd->prepare("INSERT INTO recruteurs (nom_entreprise, secteur, email, adresse, telephone, description, mot_de_passe, logo) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $req->execute([$nom_entreprise, $secteur, $email, $adresse, $telephone, $description, $mot_de_passe_hash, $logo_path]);
         $message = " Compte recruteur créé avec succès.";
     }
 }

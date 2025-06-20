@@ -103,8 +103,9 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
     </style>
 </head>
 
+
 <body class="bg-light">
-    <?php include __DIR__ . '/../includes/header3.php'; ?>
+    <?php include __DIR__ . '/../includes/header_recruteurs.php'; ?>
     <div class="container py-5">
         <!-- Souhait de bienvenue au recruteur  avec son email-->
         <h2 class="text-center mb-4 text-primary">
@@ -175,7 +176,7 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
                             <p class="mb-1"><i class="bi bi-diagram-3-fill text-muted me-1"></i><strong>Secteur d'activité :</strong> <?= htmlspecialchars($offre['secteur'] ?? '') ?></p>
                             <p class="mb-1"><i class="bi bi-calendar-check-fill text-muted me-1"></i><strong>Date :</strong> <?= htmlspecialchars($offre['date_publication']) ?></p>
                             <p><i class="bi bi-card-text text-muted me-1"></i><strong>Description :</strong> <?= nl2br(htmlspecialchars($offre['description'])) ?></p>
-                            <a href="/projet_Rabya/candidats/voir_candidature.php?id_offre=<?= $offre['id_offre'] ?>" class="btn btn-outline-primary btn-sm">
+                            <a href="/projet_Rabya/recruteurs/voir_candidature.php?id_offre=<?= $offre['id_offre'] ?>" class="btn btn-outline-primary btn-sm">
                                 <i class="bi bi-people-fill me-1"></i> Voir les candidatures
                             </a>
                             <div class="text-end">

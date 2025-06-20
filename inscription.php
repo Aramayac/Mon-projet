@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Inscription - IKBara</title>
@@ -40,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             justify-content: center;
             align-items: center;
         }
+
         .form-container {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
@@ -48,89 +50,93 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             max-width: 500px;
             width: 100%;
         }
+
         .btn-primary {
             background-color: #007bff;
             border: none;
         }
+
         .btn-primary:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
+
 <body>
 
-<div class="form-container">
-    <h2 class="text-center mb-4 text-primary">📝 Inscription</h2>
+    <div class="form-container">
+        <h2 class="text-center mb-4 text-primary">📝 Inscription</h2>
 
-    <?php if ($message): ?>
-        <div class="alert alert-success"><?= htmlspecialchars($message) ?></div>
-    <?php endif; ?>
+        <?php if ($message): ?>
+            <div class="alert alert-success"><?= htmlspecialchars($message) ?></div>
+        <?php endif; ?>
 
-    <form method="post" id="formInscription">
-        <div class="mb-3">
-            <label for="role" class="form-label">Je suis :</label>
-            <select name="role" id="role" class="form-select" required>
-                <option value="">-- Choisissez --</option>
-                <option value="candidat">Candidat</option>
-                <option value="recruteur">Recruteur</option>
-            </select>
-        </div>
-
-        <div id="bloc-candidat" style="display:none;">
+        <form method="post" id="formInscription">
             <div class="mb-3">
-                <label for="nom" class="form-label">Nom :</label>
-                <input type="text" name="nom" class="form-control">
+                <label for="role" class="form-label">Je suis :</label>
+                <select name="role" id="role" class="form-select" required>
+                    <option value="">-- Choisissez --</option>
+                    <option value="candidat">Candidat</option>
+                    <option value="recruteur">Recruteur</option>
+                </select>
             </div>
+
+            <div id="bloc-candidat" style="display:none;">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom :</label>
+                    <input type="text" name="nom" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prénom :</label>
+                    <input type="text" name="prenom" class="form-control">
+                </div>
+            </div>
+
+            <div id="bloc-recruteur" style="display:none;">
+                <div class="mb-3">
+                    <label for="nom_entreprise" class="form-label">Nom de l'entreprise :</label>
+                    <input type="text" name="nom_entreprise" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="secteur" class="form-label">Secteur :</label>
+                    <input type="text" name="secteur" class="form-control">
+                </div>
+            </div>
+
             <div class="mb-3">
-                <label for="prenom" class="form-label">Prénom :</label>
-                <input type="text" name="prenom" class="form-control">
+                <label for="email" class="form-label">Adresse Email :</label>
+                <input type="email" name="email" class="form-control" required>
             </div>
-        </div>
 
-        <div id="bloc-recruteur" style="display:none;">
             <div class="mb-3">
-                <label for="nom_entreprise" class="form-label">Nom de l'entreprise :</label>
-                <input type="text" name="nom_entreprise" class="form-control">
+                <label for="mot_de_passe" class="form-label">Mot de passe :</label>
+                <input type="password" name="mot_de_passe" class="form-control" required>
             </div>
-            <div class="mb-3">
-                <label for="secteur" class="form-label">Secteur :</label>
-                <input type="text" name="secteur" class="form-control">
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-person-plus me-1"></i> S’inscrire
+                </button>
             </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <small class="text-muted">Vous avez déjà un compte ?</small>
+            <a href="connexion.php" class="fw-bold text-primary">Connectez-vous</a>
         </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Adresse Email :</label>
-            <input type="email" name="email" class="form-control" required>
+        <div class="text-center mt-4">
+            <a href="index.php" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
         </div>
-
-        <div class="mb-3">
-            <label for="mot_de_passe" class="form-label">Mot de passe :</label>
-            <input type="password" name="mot_de_passe" class="form-control" required>
-        </div>
-
-        <div class="d-grid">
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-person-plus me-1"></i> S’inscrire
-            </button>
-        </div>
-    </form>
-
-    <div class="text-center mt-3">
-        <small class="text-muted">Vous avez déjà un compte ?</small>
-        <a href="connexion.php" class="fw-bold text-primary">Connectez-vous</a>
     </div>
 
-    <div class="text-center mt-4">
-        <a href="index.php" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Retour</a>
-    </div>
-</div>
-
-<script>
-document.getElementById('role').addEventListener('change', function () {
-    document.getElementById('bloc-candidat').style.display = this.value === 'candidat' ? 'block' : 'none';
-    document.getElementById('bloc-recruteur').style.display = this.value === 'recruteur' ? 'block' : 'none';
-});
-</script>
+    <script>
+        document.getElementById('role').addEventListener('change', function() {
+            document.getElementById('bloc-candidat').style.display = this.value === 'candidat' ? 'block' : 'none';
+            document.getElementById('bloc-recruteur').style.display = this.value === 'recruteur' ? 'block' : 'none';
+        });
+    </script>
 
 </body>
+
 </html>

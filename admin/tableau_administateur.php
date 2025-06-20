@@ -1,16 +1,20 @@
 <?php
-session_start();
+
+require_once __DIR__ . '/admin_auth.php';
+
 require_once __DIR__ . '/../configuration/connexionbase.php';
 if (!isset($_SESSION['admin_id'])) {
-    header('Location: /projet_Rabya/admin/connexion_adminstrateur.php'); exit();
-}// Fatima arama001
-$nb_candidats = $bdd->query("SELECT COUNT(*) FROM candidats")->fetchColumn();// nombre de candidats 
-$nb_recruteurs = $bdd->query("SELECT COUNT(*) FROM recruteurs")->fetchColumn();// nombre de recruteurs
-$nb_offres = $bdd->query("SELECT COUNT(*) FROM offres_emploi")->fetchColumn();// nombre d'offres d'emploi
-$nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn();// nombre de candidatures
+    header('Location: /projet_Rabya/admin/connexion_adminstrateur.php');
+    exit();
+} // Fatima arama001
+$nb_candidats = $bdd->query("SELECT COUNT(*) FROM candidats")->fetchColumn(); // nombre de candidats 
+$nb_recruteurs = $bdd->query("SELECT COUNT(*) FROM recruteurs")->fetchColumn(); // nombre de recruteurs
+$nb_offres = $bdd->query("SELECT COUNT(*) FROM offres_emploi")->fetchColumn(); // nombre d'offres d'emploi
+$nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn(); // nombre de candidatures
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Administrateur</title>
@@ -20,37 +24,48 @@ $nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn
 
     <style>
         body {
-            background: linear-gradient(to right, #f0f4f8, #d9e4f5);
+            /* background: linear-gradient(to right, #f0f4f8, #d9e4f5); */
+            background-image: url('/projet_Rabya/igm/bg1.jpg');
+            background-size: cover;
             min-height: 100vh;
         }
+
         .dashboard-header {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 2rem;
             text-align: center;
-            color: #343a40;
+            color:rgb(25, 0, 255) ;
             margin-top: 9%;
         }
+
         .card {
             border: none;
             border-radius: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
+
         .card-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
+
         .btn-group-custom a {
             min-width: 180px;
         }
+        .mt-5{
+             background: linear-gradient(to right, #f0f4f8, #d9e4f5);
+        }
     </style>
 </head>
+
 <body>
-<?php include __DIR__ . '/../includes/header_admin.php'; ?>
+    <?php include __DIR__ . '/../includes/header_admin.php'; ?>
     <div class="container py-5">
         <h1 class="dashboard-header">Tableau de bord Administrateur</h1>
         <div class="row g-4 mb-5">
@@ -97,33 +112,36 @@ $nb_candidatures = $bdd->query("SELECT COUNT(*) FROM candidatures")->fetchColumn
         </div>
     </div>
     <div class="mt-5">
-  <div class="mt-5 text-center">
-    <h3 class="text-center mb-4">Répartition générale</h3>
-    <div style="width: 320px; margin: 0 auto;">
-        <canvas id="dashboardChart" width="300" height="300"></canvas>
-    </div>
-</div>
-<script>
-    const ctx = document.getElementById('dashboardChart').getContext('2d');
-    const dashboardChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Candidats', 'Recruteurs', 'Offres', 'Candidatures'],// les étiquettes 
-            datasets: [{
-                data: [<?= $nb_candidats ?>, <?= $nb_recruteurs ?>, <?= $nb_offres ?>, <?= $nb_candidatures ?>],
-                backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545']
-            }]
-        },
-        options: {
-            responsive: false,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom' }
-            }
-        }
-    });
-</script>
-<?php include __DIR__ . '/../includes/footer.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="mt-5 text-center">
+            <h3 class="text-center mb-4">Répartition générale</h3>
+            <div style="width: 320px; margin: 0 auto;">
+                <canvas id="dashboardChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+        <script>
+            const ctx = document.getElementById('dashboardChart').getContext('2d');
+            const dashboardChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Candidats', 'Recruteurs', 'Offres', 'Candidatures'], // les étiquettes 
+                    datasets: [{
+                        data: [<?= $nb_candidats ?>, <?= $nb_recruteurs ?>, <?= $nb_offres ?>, <?= $nb_candidatures ?>],
+                        backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545']
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        </script>
+        <?php include __DIR__ . '/../includes/footer.php'; ?>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

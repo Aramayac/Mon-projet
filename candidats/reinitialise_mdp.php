@@ -16,19 +16,19 @@ if (isset($_GET['token'])) {
             $mdp = trim($_POST['mot_de_passe']);
 
             if (strlen($mdp) < 6) {
-                $message = "⚠️ Le mot de passe doit faire **au moins 6 caractères**.";
+                $message = " Le mot de passe doit faire **au moins 6 caractères**.";
             } else {
                 // Mettre à jour le mot de passe
                 $mdp_hash = password_hash($mdp, PASSWORD_DEFAULT);
                 $update = $bdd->prepare("UPDATE candidats SET mot_de_passe=?, reset_token=NULL, reset_token_expires=NULL WHERE id_candidat=?");
                 $update->execute([$mdp_hash, $candidat['id_candidat']]);
 
-                $message = "✅ Mot de passe mis à jour avec succès !";
+                $message = " Mot de passe mis à jour avec succès !";
                 $valid = false; // On désactive le formulaire après la mise à jour
             }
         }
     } else {
-        $message = "⚠️ Lien invalide ou expiré.";
+        $message = " Lien invalide ou expiré.";
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__.'/../configuration/connexionbase.php';
+require_once __DIR__ . '/../configuration/connexionbase.php';
 
 // Vérifier que le candidat est connecté
 if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'candidat') {
@@ -59,4 +59,3 @@ if ($stmt->execute([$candidat['id'], $id_offre, 'en_cours'])) {
     header("Location: /projet_Rabya/candidats/tableau_candidat.php?message=erreur");
     exit();
 }
-?>

@@ -60,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     include '../includes/header3.php';
     ?>
-
     <!-- ✅ Formulaire avec contrôle avancé -->
     <div class="container py-5">
         <div class="row justify-content-center">

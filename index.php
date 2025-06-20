@@ -3,30 +3,33 @@ require_once __DIR__ . '/configuration/connexionbase.php';
 require_once __DIR__ . '/includes/header.php';
 
 // Construction dynamique du WHERE
-$where = []; // 
-$params = [];// 
+$where = []; // Tableau pour stocker les conditions WHERE
+$params = []; //  Tableau pour stocker les paramètres de la requête
 
-if (!empty($_GET['motcle'])) {
-    $where[] = "(offres_emploi.titre LIKE :motcle OR offres_emploi.description LIKE :motcle)";
-    $params[':motcle'] = '%' . $_GET['motcle'] . '%';
+if (!empty($_GET['motcle'])) { // Vérification si le mot-clé est fourni
+    $where[] = "(offres_emploi.titre LIKE :motcle OR offres_emploi.description LIKE :motcle)"; // On recherche dans le titre et la description de l'offre
+    $params[':motcle'] = '%' . $_GET['motcle'] . '%'; // On utilise un paramètre pour éviter les injections SQL
 }
-if (!empty($_GET['localisation'])) {
-    $where[] = "offres_emploi.lieu LIKE :localisation";
-    $params[':localisation'] = '%' . $_GET['localisation'] . '%';
+// Vérification si la localisation est fournie
+if (!empty($_GET['localisation'])) { // On ajoute une condition de recherche pour la localisation
+    $where[] = "offres_emploi.lieu LIKE :localisation"; // On recherche dans le lieu de l'offre
+    $params[':localisation'] = '%' . $_GET['localisation'] . '%'; // On utilise un paramètre pour éviter les injections SQL
 }
-if (!empty($_GET['secteur'])) {
-    $where[] = "offres_emploi.secteur LIKE :secteur";
+
+if (!empty($_GET['secteur'])) { // Vérification si le secteur est fourni
+    $where[] = "offres_emploi.secteur LIKE :secteur"; // On ajoute une condition de recherche pour le secteur
     $params[':secteur'] = '%' . $_GET['secteur'] . '%';
 }
-
+//
 $sql = "
 SELECT * FROM offres_emploi
 INNER JOIN recruteurs r ON offres_emploi.id_recruteur = r.id_recruteur
-where offres_emploi.statut = 'publiée'
-";
+WHERE offres_emploi.statut = 'publiée'"; //  Un seul WHERE
+
 if ($where) {
-    $sql .= " WHERE " . implode(" AND ", $where);
+    $sql .= " AND " . implode(" AND ", $where); //  On ajoute les conditions WHERE dynamiquement
 }
+
 $sql .= " ORDER BY offres_emploi.date_publication DESC LIMIT 10";
 
 $req = $bdd->prepare($sql);
@@ -66,7 +69,7 @@ $offres = $req->fetchAll(PDO::FETCH_ASSOC);
     <h3 id="offres-emploi" class="container py-5 mb-4">📢 Offres d’emploi récentes</h3>
     <?php if (count($offres) > 0): ?>
         <div class="row">
-            <?php foreach ($offres as $offre): ?>
+            <?php foreach ($offres as $offre): ?> <!-- Pour chaque offre, on crée une carte -->
                 <?php
                 $logo = !empty($offre['logo']) ? '/projet_Rabya/recruteurs/dossier/' . htmlspecialchars($offre['logo']) : 'igm/3022.jpg';
                 ?>

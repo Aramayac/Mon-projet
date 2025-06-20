@@ -1,44 +1,38 @@
 <?php
 require_once __DIR__ . '/../configuration/connexionbase.php';
-
 $message = '';
 $typeMessage = ''; // success, danger, warning
 
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = strtolower(trim($_POST['email']));
+    $email = trim($_POST['email']);
+
     
-    if (empty($email)) {
-        $message = "Veuillez entrer votre adresse email.";
-        $typeMessage = "warning";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $message = "L'adresse email n'est pas valide.";
-        $typeMessage = "danger";
-    } else {
-        // Rechercher le recruteur
-        $stmt = $bdd->prepare("SELECT id_recruteur FROM recruteurs WHERE LOWER(email) = LOWER(?)");
+    if (!empty($email)) {
+        // Vérifie si l'email existe chez les recruteurs
+        $stmt = $bdd->prepare("SELECT id_recruteur FROM recruteurs WHERE email = ?");
         $stmt->execute([$email]);
         $recruteur = $stmt->fetch();
 
         if ($recruteur) {
-            // Générer un token
+            // Génère un token et une date d'expiration
             $token = bin2hex(random_bytes(16));
             $expire = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
-            // Enregistrer le token
+            // Met à jour le recruteur avec le token
             $update = $bdd->prepare("UPDATE recruteurs SET reset_token=?, reset_token_expires=? WHERE id_recruteur=?");
             $update->execute([$token, $expire, $recruteur['id_recruteur']]);
 
-            // Lien de réinitialisation (pour test)
-            $lien = "http://localhost/projet_Rabya/recruteurs/reinitialise_mdp_recruteur.php?token=$token";
-            $message = "Un lien de réinitialisation a été généré (affiché pour test local).";
-            $typeMessage = "success";
-
-            // Affichage du lien pour test
-            echo "<div class='alert alert-info text-center'>Lien de réinitialisation : <a href='$lien'>$lien</a></div>";
+            // Lien de réinitialisation (affiché pour test en local)
+            $lien = "http://localhost/projet_Rabya/recruteurs/reinitialisation_mdp_recruteur.php?token=$token";
+            $message = "Un lien de réinitialisation a été généré.";
+            echo "<div class='alert alert-info text-center'>Lien de réinitialisation (test local) :<br><a href='$lien'>$lien</a></div>";
         } else {
-            $message = "Aucun compte recruteur n'est associé à cet email.";
-            $typeMessage = "danger";
+            $message = " Aucun compte recruteur associé à cet email.";
         }
+    } else {
+        $message = "Veuillez entrer une adresse email.";
+        $typeMessage = "warning";
     }
 }
 ?>
@@ -65,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             background: white;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
         }
 
         .focus-shadow:focus {
@@ -74,6 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .btn-lg {
             font-size: 16px;
             font-weight: 500;
+        }
+        .alert {
+            margin-top: 60px;
         }
     </style>
 </head>
@@ -89,15 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </h3>
 
                     <?php if ($message): ?>
-                        <div class="alert alert-<?= htmlspecialchars($typeMessage) ?> text-center">
-                            <?= htmlspecialchars($message) ?>
-                        </div>
+                        <div class="alert alert-info text-center"><?= htmlspecialchars($message) ?></div>
                     <?php endif; ?>
 
                     <form method="post">
                         <div class="mb-3">
                             <label class="form-label">Adresse email</label>
-                            <input type="email" name="email" class="form-control focus-shadow">
+                            <input type="email" name="email" class="form-control focus-shadow" >
                         </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg">
@@ -112,7 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </div>
     </div>
+    <?php 
+    ?>
 
 </body>
-
 </html>

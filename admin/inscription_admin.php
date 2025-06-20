@@ -19,12 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head><meta charset="UTF-8"><title>Inscrire un admin</title></head>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inscrire un admin</title>
+</head>
+
 <body>
-<form method="post">
-    <label>Nom d'utilisateur : <input name="username" required></label><br>
-    <label>Mot de passe : <input name="password" type="password" required></label><br>
-    <button type="submit">Créer admin</button>
-</form>
+    <form method="post">
+        <label>Nom d'utilisateur : <input name="username" required></label><br>
+        <label>Mot de passe : <input name="password" type="password" required></label><br>
+        <button type="submit">Créer admin</button>
+    </form>
 </body>
+
 </html>

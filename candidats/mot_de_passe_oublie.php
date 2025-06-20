@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             background: white;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
         }
 
         .focus-shadow:focus {
@@ -80,6 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .btn-lg {
             font-size: 18px;
             font-weight: bold;
+        }
+        .alert{
+            margin-top: 0;
         }
     </style>
 </head>

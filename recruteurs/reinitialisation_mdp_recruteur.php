@@ -58,6 +58,9 @@ if (isset($_GET['token'])) {
         p {
             color: white;
         }
+        .card{
+            margin-top: 60px;
+        }
     </style>
     <!-- ✅ Navbar moderne -->
     <?php
@@ -67,7 +70,7 @@ if (isset($_GET['token'])) {
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card shadow-lg rounded-4 border-0">
-                    <div class="card-header bg-primary text-dark text-center fs-4 fw-bold">
+                    <div class="card-header bg-primary text-white text-center fs-4 fw-bold">
                         <i class="bi bi-lock"></i> Réinitialiser mon mot de passe
                     </div>
                     <div class="card-body px-4 py-4">

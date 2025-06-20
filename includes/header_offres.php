@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -165,7 +166,7 @@
           <i class="fas fa-plus me-1"></i> Créer un Job
         </a>
       <?php else: ?>
-        <a href="connexion_recruteur.php?redirect=ajouter_offre.php" class="btn btn-job ms-2">
+        <a href="../authentification/connexion_recruteur.php?redirect=ajouter_offre.php" class="btn btn-job ms-2">
           <i class="fas fa-plus me-1"></i> Créer un Job
         </a>
       <?php endif; ?>
@@ -175,27 +176,28 @@
     <div class="hero-content container">
       <h1 class="fw-bold display-6 mt-4">Les offres d'emplois</h1>
       <div class="search-bar mt-4">
-        <form class="row g-2">
+        <?php include 'secteurs.php'; ?>
+        <form class="row g-2" method="GET" action="offres.php">
           <div class="col-md-3 col-12">
             <div class="input-group">
               <span class="input-group-text bg-white"><i class="fas fa-pen"></i></span>
-              <input type="text" class="form-control" placeholder="Quoi ?">
+              <input type="text" class="form-control" name="motcle" placeholder="Quoi ?">
             </div>
           </div>
           <div class="col-md-3 col-12">
             <div class="input-group">
               <span class="input-group-text bg-white"><i class="fas fa-map-marker-alt"></i></span>
-              <input type="text" class="form-control" placeholder="Où ?">
+              <input type="text" class="form-control" name="localisation" placeholder="Où ?">
             </div>
           </div>
           <div class="col-md-3 col-12">
             <div class="input-group">
               <span class="input-group-text bg-white"><i class="fas fa-list"></i></span>
-              <select class="form-select">
-                <option>Secteur d'activité</option>
-                <option>Informatique</option>
-                <option>Finance</option>
-                <option>Marketing</option>
+              <select class="form-select" name="secteur">
+                <option value="" disabled selected>Sélectionnez un secteur</option>
+                <?php foreach ($secteurs as $secteur): ?>
+                  <option value="<?= htmlspecialchars($secteur) ?>"><?= htmlspecialchars($secteur) ?></option>
+                <?php endforeach; ?>
               </select>
             </div>
           </div>

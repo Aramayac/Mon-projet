@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__.'/../configuration/connexionbase.php';
+require_once __DIR__ . '/../configuration/connexionbase.php';
 
 // Vérifier que l'utilisateur est connecté et est un recruteur
 if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
@@ -34,4 +34,3 @@ $bdd->prepare("DELETE FROM offres_emploi WHERE id_offre = ?")->execute([$id_offr
 
 header("Location: /projet_Rabya/recruteurs/tableau_recruteur.php?msg=offre_supprimee");
 exit();
-?>

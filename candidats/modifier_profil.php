@@ -174,6 +174,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>" target="_blank" class="btn btn-outline-secondary btn-sm">
                                 <i class="bi bi-file-earmark-pdf"></i> Voir mon CV
                             </a>
+                            <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>"
+                                class="btn btn-outline-success btn-sm btn-modern"
+                                download>
+                                <i class="bi bi-download"></i> Télécharger
+                            </a>
                         <?php else: ?>
                             <span class="text-muted">Aucun CV ajouté</span>
                         <?php endif; ?>

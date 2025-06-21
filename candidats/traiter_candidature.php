@@ -21,7 +21,7 @@ if (
 }
 
 $id_candidature = intval($_POST['id_candidature']);
-$nouveau_statut = $_POST['action'] === 'accepter' ? 'acceptée' : 'refusée';
+$nouveau_statut = $_POST['action'] === 'accepter' ? 'acceptée' : 'refusée';// Accepter ou refuser la candidature
 
 // Récupérer infos pour le message et l'e-mail
 $stmt = $bdd->prepare("

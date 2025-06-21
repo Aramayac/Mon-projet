@@ -119,9 +119,12 @@ require_once __DIR__ . '/../candidats/logique_candidat.php';
         <!-- Section Profil -->
         <div id="profil" class="content-section">
             <div class="profil-header">
-                <form id="avatarForm" action="upload_avatar.php" method="post" enctype="multipart/form-data" style="display: flex; align-items: center; margin: 0;">
-                    <label for="avatarInput" style="cursor:pointer; margin-bottom: 0;">
-                       <img src="<?= $profil['avatar'] ?? '/projet_Rabya/candidats/avatars/m1.jpg' ?>?v=<?= time() ?>" alt="Avatar" class="avatar">
+                <form id="avatarForm" action="upload_avatar.php" method="post" enctype="multipart/form-data">
+                    <label for="avatarInput" style="cursor:pointer;">
+                        <img src="/projet_Rabya/candidats/avatars/<?= htmlspecialchars($profil['avatar'] ?? 'avatar_default.png') ?>"
+                            alt="Avatar"
+                            class="avatar"
+                            style="width:68px;height:68px;border-radius:50%;">
                     </label>
                     <input type="file" name="avatar" id="avatarInput" accept="image/*" style="display:none" onchange="document.getElementById('avatarForm').submit();">
                 </form>
@@ -146,10 +149,16 @@ require_once __DIR__ . '/../candidats/logique_candidat.php';
                 <div class="col-md-6 mb-2">
                     <p><strong>CV :</strong>
                         <?php if ($profil['cv']): ?>
-                            <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>" target="_blank" class="btn btn-outline-primary btn-sm btn-modern">Voir mon CV</a>
+                            <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>"
+                                class="btn btn-outline-success btn-sm btn-modern"
+                                download>
+                                <i class="bi bi-download"></i> Télécharger
+                            </a>
+                            <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>" class="btn btn-outline-primary btn-sm btn-modern">Voir mon CV</a>
                         <?php else: ?>
                             <span class="text-muted">Aucun CV ajouté</span>
                         <?php endif; ?>
+
                     </p>
                 </div>
             </div>

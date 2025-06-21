@@ -23,12 +23,12 @@ $profil = $stmt->fetch();
 
 // 2. Vérification si le profil est complet
 $stmt = $bdd->prepare("SELECT * FROM profils_candidats WHERE id_candidat = ?");
-$stmt->execute([$candidat['id']]);
+$stmt->execute([$candidat['id']]);// Exécution de la requête pour vérifier si le profil du candidat est complet
 $profil_complet = $stmt->fetch();
 
 // 3. Logique de recherche des offres (mot-clé, secteur, lieu)
 $motcle = $_GET['motcle'] ?? '';
-$localisation = $_GET['localisation'] ?? '';
+$localisation = $_GET['localisation'] ?? '';// Récupération du mot-clé de recherche depuis les paramètres GET
 $secteur = $_GET['secteur'] ?? '';
 
 $where = [];// Tableau pour stocker les conditions de recherche
@@ -56,7 +56,7 @@ if ($where) {// Si des conditions de recherche sont définies, on les ajoute à 
 
 }
 
-$sql .= " ORDER BY o.date_publication DESC LIMIT 10"; // Limite à 10 résultats pour la pagination
+$sql .= " ORDER BY o.date_publication DESC LIMIT 3"; // Limite à 10 résultats pour la pagination
 
 
 $stmt = $bdd->prepare($sql);// Préparation de la requête SQL
@@ -65,9 +65,9 @@ $offres = $stmt->fetchAll();// Exécution de la requête et récupération des r
 
 // 4. Récupération des offres déjà postulées (pour désactiver le bouton "Postuler")
 $stmt = $bdd->prepare("SELECT id_offre FROM candidatures WHERE id_candidat = ?");
-$stmt->execute([$candidat['id']]);
+$stmt->execute([$candidat['id']]);//
 $mes_candidatures = $stmt->fetchAll(PDO::FETCH_COLUMN);
-if (!$mes_candidatures) $mes_candidatures = [];
+if (!$mes_candidatures) $mes_candidatures = [];// Si aucune candidature n'est trouvée, on initialise le tableau à vide
 
 // 5. Récupération de toutes les candidatures du candidat (pour afficher le statut)
 $stmt = $bdd->prepare(

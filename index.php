@@ -24,13 +24,13 @@ if (!empty($_GET['secteur'])) { // Vérification si le secteur est fourni
 $sql = "
 SELECT * FROM offres_emploi
 INNER JOIN recruteurs r ON offres_emploi.id_recruteur = r.id_recruteur
-WHERE offres_emploi.statut = 'publiée'"; //  Un seul WHERE
+WHERE offres_emploi.statut = 'publiée'"; // On sélectionne uniquement les offres publiées
 
 if ($where) {
     $sql .= " AND " . implode(" AND ", $where); //  On ajoute les conditions WHERE dynamiquement
 }
 
-$sql .= " ORDER BY offres_emploi.date_publication DESC LIMIT 10";
+$sql .= " ORDER BY offres_emploi.date_publication DESC LIMIT 5";// On limite les résultats aux 5 offres les plus récentes
 
 $req = $bdd->prepare($sql);
 $req->execute($params);
@@ -104,7 +104,6 @@ $offres = $req->fetchAll(PDO::FETCH_ASSOC);
                                         Expire le : <?= date('d-m-Y', strtotime($offre['date_expiration'])) ?>
                                     <?php endif; ?>
                                 </div>
-
                             </div>
                             <div>
                                 <a href="/projet_Rabya/recruteurs/offre_emploi.php?id=<?= $offre['id_offre'] ?>" class="btn btn-outline-primary btn-sm mt-2">

@@ -1,86 +1,197 @@
 # Plateforme de Recrutement en Ligne – IKBara
 
-Ce projet est une plateforme web de recrutement en ligne permettant la mise en relation de candidats à l’emploi et de recruteurs. Elle offre une gestion centralisée des offres d’emploi, des candidatures, et dispose d’un espace d’administration.
+Plateforme web complète pour la mise en relation entre candidats à l’emploi et recruteurs, avec gestion centralisée des offres, candidatures, et un espace d’administration sécurisé.
+
+---
+
+## Sommaire
+
+- [Fonctionnalités principales](#fonctionnalités-principales)
+- [Technologies utilisées](#technologies-utilisées)
+- [Structure du projet](#structure-du-projet)
+- [Installation](#installation)
+- [Détail des dossiers et fichiers](#détail-des-dossiers-et-fichiers)
+- [Sécurité](#sécurité)
+- [Crédits](#crédits)
+
+---
 
 ## Fonctionnalités principales
 
-- **Candidats**
-  - Inscription, connexion, gestion du profil (CV, compétences, expériences…)
-  - Parcours et recherche d’offres d’emploi (filtrage par mots-clés, lieu, secteur…)
-  - Postulation à des offres, suivi des candidatures et réception de messages
-  - Réinitialisation du mot de passe
+### Candidats
+- Inscription, connexion, gestion du profil (CV, compétences, expériences…)
+- Parcours, recherche et filtrage des offres d’emploi
+- Postulation, suivi des candidatures, messagerie interne
+- Réinitialisation du mot de passe
 
+### Recruteurs
+- Inscription, connexion, gestion du profil entreprise
+- Publication, modification, suppression et gestion d’offres
+- Consultation et gestion des candidatures reçues
+- Notification des candidats (messagerie interne/email)
+- Réinitialisation du mot de passe
 
-- **Recruteurs**
-  - Inscription, connexion, gestion du profil entreprise (logo, secteur, contact…)
-  - Publication, modification, suppression et gestion d’offres d’emploi
-  - Consultation des candidatures reçues et gestion du statut de chaque candidature (acceptée, refusée)
-  - Notification automatique des candidats par messagerie interne
-  - Réinitialisation du mot de passe (MailHog ) Configuration du serveur SMTP dans php.ini, [mail function]
-    SMTP = 127.0.0.1
-    smtp_port = 1025
+### Administrateur
+- Tableau de bord global (statistiques, monitoring)
+- Gestion des utilisateurs (activation, blocage) et offres (publication, masquage)
+- Connexion sécurisée
 
-
-- **Administrateur**
-  - Tableau de bord de monitoring (statistiques globales)
-  - Gestion des utilisateurs (activation, blocage) et des offres (masquage, publication)
-  - Connexion sécurisée
+---
 
 ## Technologies utilisées
 
-- PHP (Programmation côté serveur)
-- MySQL (Base de données)
-- Bootstrap 5, Bootstrap Icons (UI responsive)
-- HTML5, CSS3, JavaScript
-- PlantUML (modélisation UML de la base de donneer)
-- Composer (gestion des dépendances)
-- PHPMailer (gestion des emails)
+- **PHP** (Back-end)
+- **MySQL** (Base de données)
+- **Bootstrap 5** & **Bootstrap Icons** (UI responsive)
+- **HTML5, CSS3, JavaScript**
+- **Composer** (gestion des dépendances)
+- **PHPMailer** (envoi d'emails)
+- **PlantUML** (modélisation UML)
+- **GitHub Actions** (workflow CI/CD)
+
+---
 
 ## Structure du projet
 
 ```
-/admin           : Interfaces d’administration
-/authentification: Connexion (candidats/recruteurs)
-/candidats       : Espace et logique métier pour les candidats
-/recruteurs      : Espace et logique métier pour les recruteurs
-/includes        : Entêtes, pieds de page, composants réutilisables
-/configuration   : Connexion à la base de données
-/igm, /img, /dossier, /cv : Images, logos et fichiers utilisateur
-README.md        : Ce fichier
+.
+│   auth.php
+│   cahier_des_charges.md
+│   candidatplan.png
+│   composer.json / lock
+│   connexion.php
+│   contact.php
+│   dbdiagramme.pdf / .png
+│   deconnexion.php
+│   faq.php
+│   footer_contact.php
+│   header_contact.php
+│   Ikbaradiagrmme.pdf
+│   index.php
+│   inscri.php
+│   inscription.php
+│   insert.txt
+│   mailer_config.php
+│   README.md
+│   recrutement_en_ligne.sql
+├───.github/
+│   └───workflows/      # Intégration continue (tests, build)
+├───admin/              # Gestion admin (offres, users, stats)
+├───authentification/   # Connexion candidats & recruteurs
+├───candidats/          # Espace et logiques candidats
+├───configuration/      # Connexion à la base de données
+├───igm/                # Images, logos, ressources graphiques
+├───includes/           # Entêtes, pieds de page, composants réutilisables
+├───recruteurs/         # Espace et logiques recruteurs
+└───vendor/             # Librairies tierces (Composer, PHPMailer)
 ```
+
+---
 
 ## Installation
 
 1. **Cloner le dépôt**
    ```bash
    git clone https://github.com/Aramayac/Mon-projet.git
+   cd Mon-projet
    ```
 
-2. **Configurer la base de données**
-   - Importer le fichier `recrutement_en_ligne.sql` dans MySQL.
-   - Vérifier/adapter la configuration d’accès dans `configuration/connexionbase.php`.
+2. **Installer les dépendances PHP**
+   ```bash
+   composer install
+   ```
 
-3. **Lancer le projet**
-   - Héberger les fichiers sur un serveur local (XAMPP, WAMP, MAMP…) ou un hébergement PHP/MySQL.
-   - Accéder à l’URL de base du projet.
+3. **Configurer la base de données**
+   - Importer le fichier `recrutement_en_ligne.sql` dans MySQL/MariaDB.
+   - Configurer l’accès DB dans `configuration/connexionbase.php`.
 
-## Accès rapides
+4. **Configurer l’e-mail**
+   - Modifier `mailer_config.php` pour vos identifiants SMTP (PHPMailer).
+   - Pour développement local, possible d’utiliser MailHog ou équivalent :
+     ```
+     [mail function]
+     SMTP = 127.0.0.1
+     smtp_port = 1025
+     ```
 
-- Page d’accueil : `/index.php`
-- Inscription candidat : `/inscription.php` ou `/candidats/inscription_candidat.php`
-- Inscription recruteur : `/recruteurs/inscription_recruteur.php`
-- Connexion : `/connexion.php`
-- Tableau de bord admin : `/admin/tableau_administateur.php`
+5. **Lancer le projet**
+   - Héberger sur serveur web local (XAMPP, WAMP, MAMP) ou PHP/MySQL en ligne.
+   - Accéder à l’URL du projet (ex : http://localhost/Mon-projet/).
+
+---
+
+## Détail des dossiers et fichiers
+
+### `/admin`
+Gestion de la plateforme côté administrateur :
+- **admin_auth.php** : Login admin
+- **bloquer_offres.php**, **bloquer_users.php** : Blocage d’offres/utilisateurs
+- **connexion_adminstrateur.php**, **deconnexion.php** : Connexion/Déconnexion admin
+- **inscription_admin.php** : Création admin
+- **offres.php**, **users.php** : Gestion des offres et utilisateurs
+- **tableau_administateur.php** : Dashboard statistiques/monitoring
+
+### `/authentification`
+Pages de connexion dédiées pour chaque rôle :
+- **connexion_candidat.php**
+- **connexion_recruteur.php**
+
+### `/candidats`
+Espace candidat (fonctionnalités majeures) :
+- Gestion du profil, messagerie interne, candidature, suivi, upload avatar/CV, réinitialisation mot de passe, etc.
+- **avatars/** : Photos de profil
+- **cv/** : CVs PDF des candidats
+
+### `/recruteurs`
+Espace entreprise/recruteur :
+- Gestion du compte, publication/modification/suppression d’offres, réception des candidatures, notification des candidats, etc.
+- **dossier/** : Logos des entreprises
+
+### `/includes`
+Composants réutilisables :
+- **header.php**, **footer.php** (+ variantes)
+- **secteurs.php** : Liste des secteurs proposés
+
+### `/igm`
+Ressources graphiques du site (logos, illustrations, fonds, etc).
+- **silhouettes-modern-background/** : Images thème/design, licences
+
+### `/configuration`
+- **connexionbase.php** : Paramètres de connexion MySQL
+
+### `/vendor`
+Librairies tierces gérées par Composer.
+- **phpmailer/** : Gestion des emails sortants
+
+### Fichiers principaux à la racine
+- **index.php** : Page d’accueil
+- **inscription.php** : Formulaire d’inscription (raccourci)
+- **connexion.php** : Page de connexion globale
+- **contact.php**, **faq.php** : Support utilisateur
+- **recrutement_en_ligne.sql** : Script SQL à importer
+- **composer.json / lock** : Dépendances PHP/Composer
+- **README.md** : Ce fichier
+- **cahier_des_charges.md** : Spécifications détaillées du projet
+- **dbdiagramme.pdf/.png** : Schéma de la base
+
+---
 
 ## Sécurité
 
-- Mots de passe hashés (password_hash)
-- Vérification rôle/session sur chaque page sensible
-- Upload sécurisé (CV PDF, images)
-- Gestion des statuts (actif/bloqué) pour chaque compte
+- Mots de passe hashés (`password_hash`)
+- Contrôle de session/roles sur chaque page sensible
+- Upload sécurisé des fichiers (CV/images)
+- Gestion fine des statuts utilisateurs (actif/bloqué)
+- RGPD : Données personnelles traitées confidentiellement
 
+---
 
 ## Crédits
 
-Développé par Aramayac et collaborateurs, 2025.
+Développé par [Aramayac](https://github.com/Aramayac) et collaborateurs, 2025.
 
+---
+
+**Licence :** Open-source, [voir le dépôt](https://github.com/Aramayac/Mon-projet) pour plus d’infos.
+
+---

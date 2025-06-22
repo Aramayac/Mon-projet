@@ -1,13 +1,18 @@
 <?php
 require_once __DIR__ . '/../configuration/connexionbase.php';
+
+// Ajout PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../vendor/autoload.php'; // Adapte le chemin si besoin
+
 $message = '';
 $typeMessage = ''; // success, danger, warning
-
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
 
-    
     if (!empty($email)) {
         // Vérifie si l'email existe chez les recruteurs
         $stmt = $bdd->prepare("SELECT id_recruteur FROM recruteurs WHERE email = ?");
@@ -23,12 +28,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $update = $bdd->prepare("UPDATE recruteurs SET reset_token=?, reset_token_expires=? WHERE id_recruteur=?");
             $update->execute([$token, $expire, $recruteur['id_recruteur']]);
 
-            // Lien de réinitialisation (affiché pour test en local)
+            // Lien de réinitialisation
             $lien = "http://localhost/projet_Rabya/recruteurs/reinitialisation_mdp_recruteur.php?token=$token";
-            $message = "Un lien de réinitialisation a été généré.";
-            echo "<div class='alert alert-info text-center'>Lien de réinitialisation (test local) :<br><a href='$lien'>$lien</a></div>";
+
+            // Envoi du mail via PHPMailer
+            $mail = new PHPMailer(true);
+            try {
+                // Config SMTP (exemple Gmail)
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com'; // Ou autre serveur SMTP
+                $mail->SMTPAuth = true;
+                $mail->Username = 'yacoubaarama12@gmail.com'; // Ton email expéditeur
+                $mail->Password = 'tgpy prek vjjc cxpu'; // Mot de passe d'application
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+
+                // Destinataire
+                $mail->setFrom('yacoubaarama12@gmail.com', 'Recrutement - IKBARA');
+                $mail->addAddress($email);
+
+                // Contenu du mail
+                $mail->isHTML(true);
+                $mail->Subject = 'Réinitialisation de votre mot de passe recruteur';
+                $mail->Body = "
+                    Bonjour,<br><br>
+                    Vous avez demandé la réinitialisation de votre mot de passe recruteur.<br>
+                    Cliquez sur ce lien pour créer un nouveau mot de passe :<br>
+                    <a href='$lien'>$lien</a><br><br>
+                    Ce lien est valable 10 minute.<br><br>
+                    Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.
+                ";
+
+                $mail->send();
+                $message = "Un email de réinitialisation vient de vous être envoyé.";
+                $typeMessage = "success";
+
+            } catch (Exception $e) {
+                $message = "L'envoi de l'email a échoué. Veuillez réessayer.<br>Erreur : " . $mail->ErrorInfo;
+                $typeMessage = "danger";
+            }
+
+            // Affichage du lien en local pour le développeur (ne pas laisser en prod !)
+            // if ($_SERVER['SERVER_NAME'] === 'localhost') {
+            //     echo "<div class='alert alert-info text-center'>Lien de réinitialisation (test local) :<br><a href='$lien'>$lien</a></div>";
+            // }
+
         } else {
-            $message = " Aucun compte recruteur associé à cet email.";
+            $message = "Aucun compte recruteur associé à cet email.";
+            $typeMessage = "danger";
         }
     } else {
         $message = "Veuillez entrer une adresse email.";
@@ -36,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -71,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-weight: 500;
         }
         .alert {
-            margin-top: 60px;
+            margin-top: 0;
         }
     </style>
 </head>
@@ -87,13 +133,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </h3>
 
                     <?php if ($message): ?>
-                        <div class="alert alert-info text-center"><?= htmlspecialchars($message) ?></div>
+                        <div class="alert alert-<?= htmlspecialchars($typeMessage ?: 'info') ?> text-center"><?= htmlspecialchars($message) ?></div>
                     <?php endif; ?>
 
                     <form method="post">
                         <div class="mb-3">
                             <label class="form-label">Adresse email</label>
-                            <input type="email" name="email" class="form-control focus-shadow" >
+                            <input type="email" name="email" class="form-control focus-shadow" required>
                         </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg">
@@ -108,8 +154,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </div>
     </div>
-    <?php 
-    ?>
-
 </body>
 </html>

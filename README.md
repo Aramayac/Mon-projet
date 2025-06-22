@@ -10,12 +10,16 @@ Ce projet est une plateforme web de recrutement en ligne permettant la mise en r
   - Postulation à des offres, suivi des candidatures et réception de messages
   - Réinitialisation du mot de passe
 
+
 - **Recruteurs**
   - Inscription, connexion, gestion du profil entreprise (logo, secteur, contact…)
   - Publication, modification, suppression et gestion d’offres d’emploi
   - Consultation des candidatures reçues et gestion du statut de chaque candidature (acceptée, refusée)
   - Notification automatique des candidats par messagerie interne
-  - Réinitialisation du mot de passe
+  - Réinitialisation du mot de passe (MailHog ) Configuration du serveur SMTP dans php.ini, [mail function]
+    SMTP = 127.0.0.1
+    smtp_port = 1025
+
 
 - **Administrateur**
   - Tableau de bord de monitoring (statistiques globales)
@@ -28,7 +32,9 @@ Ce projet est une plateforme web de recrutement en ligne permettant la mise en r
 - MySQL (Base de données)
 - Bootstrap 5, Bootstrap Icons (UI responsive)
 - HTML5, CSS3, JavaScript
-- PlantUML (modélisation UML)
+- PlantUML (modélisation UML de la base de donneer)
+- Composer (gestion des dépendances)
+- PHPMailer (gestion des emails)
 
 ## Structure du projet
 
@@ -73,6 +79,8 @@ README.md        : Ce fichier
 - Upload sécurisé (CV PDF, images)
 - Gestion des statuts (actif/bloqué) pour chaque compte
 
+
 ## Crédits
 
 Développé par Aramayac et collaborateurs, 2025.
+

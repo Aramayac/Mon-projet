@@ -7,6 +7,6 @@ session_destroy();
 // Redirige vers la page d'accueil ou de connexion
 // echo "Vous avez été déconnecté avec succès.";
 // Redirection vers la page de connexion
-header('Location: /projet_Rabya/connexion.php');
+header('Location: /projet_Rabya/index.php?message=deconnexion_reussie');
 exit();
 ?>

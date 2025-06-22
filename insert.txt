@@ -1,0 +1,187 @@
+======================================
+       🔹 PROFILS DES CANDIDATS
+======================================
+
+Candidat 1 :
+Téléphone : 771234567
+Niveau d'étude : Licence Informatique
+Expérience : 2 ans de stage en développement web
+Compétences : PHP, MySQL, UML
+CV : cv_moussa.pdf
+
+Candidat 2 :
+Téléphone : 781112233
+Niveau d'étude : BTS Réseaux Télécom
+Expérience : 1 an chez Orange Sénégal
+Compétences : Réseaux, Sécurité, Cisco
+CV : cv_aminata.pdf
+
+Candidat 3 :
+Téléphone : 765432198
+Niveau d'étude : Master Finance
+Expérience : Analyste financier chez Ecobank
+Compétences : Excel, VBA, Gestion financière
+CV : cv_diallo.pdf
+
+Candidat 4 :
+Téléphone : 701234890
+Niveau d'étude : Licence Gestion RH
+Expérience : Stage chez Sonatel RH
+Compétences : Recrutement, Communication, Word
+CV : cv_fatou.pdf
+
+Candidat 5 :
+Téléphone : 777771111
+Niveau d'étude : Licence Développement Web
+Expérience : Freelance full-stack
+Compétences : Laravel, JavaScript, API REST
+CV : cv_ibrahima.pdf
+
+Candidat 6 :
+Téléphone : 764445555
+Niveau d'étude : Licence Informatique
+Expérience : Stage à l’ADIE
+Compétences : HTML, CSS, PHP
+CV : cv_ndiaye.pdf
+
+Candidat 7 :
+Téléphone : 781212345
+Niveau d'étude : BAC+2 Data
+Expérience : Projet d’analyse Excel et Python
+Compétences : Python, Power BI, SQL
+CV : cv_omar.pdf
+
+Candidat 8 :
+Téléphone : 763003003
+Niveau d'étude : Master Logistique
+Expérience : 2 ans – Dakar Terminal
+Compétences : Planification, ERP
+CV : cv_astou.pdf
+
+Candidat 9 :
+Téléphone : 770707707
+Niveau d'étude : Licence Droit
+Expérience : Assistant juridique – Me Diop & Associés
+Compétences : Archivage, Rédaction, Droit du travail
+CV : cv_khadim.pdf
+
+Candidat 10 :
+Téléphone : 779999999
+Niveau d'étude : Master Business Intelligence
+Expérience : Stage BI chez CBAO
+Compétences : SQL Server, ETL, Dashboarding
+CV : cv_binta.pdf
+
+======================================
+       🔸 OFFRES D'EMPLOI RECRUTEURS
+======================================
+
+Offre 1 – Recruteur ID : 1  
+Titre : Développeur Full Stack PHP  
+Secteur : Informatique  
+Lieu : Dakar  
+Contrat : CDI  
+Salaire : 600 000 FCFA  
+Date publication : 2025-06-01  
+Date expiration : 2025-06-30  
+Statut : en_attente  
+Description : Projets Laravel & React dans une équipe agile.
+
+Offre 2 – Recruteur ID : 2  
+Titre : Responsable RH junior  
+Secteur : Ressources Humaines  
+Lieu : Thiès  
+Contrat : CDD  
+Salaire : 400 000 FCFA  
+Date publication : 2025-05-25  
+Date expiration : 2025-06-25  
+Statut : en_attente  
+Description : Gestion du personnel, recrutement, suivi administratif.
+
+Offre 3 – Recruteur ID : 3  
+Titre : Technicien Réseaux & Systèmes  
+Secteur : IT  
+Lieu : Saint-Louis  
+Contrat : CDI  
+Salaire : 500 000 FCFA  
+Date publication : 2025-06-10  
+Date expiration : 2025-07-10  
+Statut : en_attente  
+Description : Maintenance et support infrastructure réseau.
+
+Offre 4 – Recruteur ID : 1  
+Titre : Animateur agricole – Zone rurale  
+Secteur : Agriculture  
+Lieu : Kaffrine  
+Contrat : CDD  
+Salaire : 300 000 FCFA  
+Date publication : 2025-06-15  
+Date expiration : 2025-07-15  
+Statut : en_attente  
+Description : Encadrement en agroécologie de groupes locaux.
+
+Offre 5 – Recruteur ID : 4  
+Titre : Chargé de communication digitale  
+Secteur : Marketing  
+Lieu : Télétravail  
+Contrat : Stage  
+Salaire : 150 000 FCFA  
+Date publication : 2025-06-01  
+Date expiration : 2025-06-30  
+Statut : en_attente  
+Description : Community management, newsletters et reporting.
+
+Offre 6 – Recruteur ID : 5  
+Titre : Comptable confirmé  
+Secteur : Finance  
+Lieu : Dakar Plateau  
+Contrat : CDI  
+Salaire : 700 000 FCFA  
+Date publication : 2025-06-05  
+Date expiration : 2025-06-25  
+Statut : en_attente  
+Description : Clôture, trésorerie, gestion budgétaire.
+
+Offre 7 – Recruteur ID : 3  
+Titre : Assistant administratif polyvalent  
+Secteur : Administration  
+Lieu : Mbour  
+Contrat : CDD  
+Salaire : 280 000 FCFA  
+Date publication : 2025-06-12  
+Date expiration : 2025-07-10  
+Statut : en_attente  
+Description : Accueil, gestion documentaire, agenda.
+
+Offre 8 – Recruteur ID : 2  
+Titre : Technicien maintenance industrielle  
+Secteur : Industrie  
+Lieu : Rufisque  
+Contrat : CDI  
+Salaire : 550 000 FCFA  
+Date publication : 2025-06-18  
+Date expiration : 2025-07-15  
+Statut : en_attente  
+Description : Réparation machines de production.
+
+Offre 9 – Recruteur ID : 4  
+Titre : Formateur bureautique Word/Excel  
+Secteur : Formation  
+Lieu : Ziguinchor  
+Contrat : Prestation  
+Salaire : 250 000 FCFA  
+Date publication : 2025-06-20  
+Date expiration : 2025-07-10  
+Statut : en_attente  
+Description : Modules pratiques en bureautique.
+
+Offre 10 – Recruteur ID : 5  
+Titre : Chef de projet junior  
+Secteur : Informatique  
+Lieu : Dakar Almadies  
+Contrat : CDI  
+Salaire : 800 000 FCFA  
+Date publication : 2025-06-21  
+Date expiration : 2025-07-20  
+Statut : en_attente  
+Description : Suivi projet, réunions, coordination agile.

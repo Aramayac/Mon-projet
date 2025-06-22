@@ -1,6 +1,12 @@
 <?php
 require_once __DIR__ . '/../configuration/connexionbase.php';
 
+// Ajout PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../vendor/autoload.php'; // Adapte ce chemin si besoin
+
 $message = '';
 $typeMessage = ''; // success, danger, warning
 
@@ -21,24 +27,59 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($candidat) {
             // Générer un token
-            $token = bin2hex(random_bytes(16));
-            $expire = date('Y-m-d H:i:s', strtotime('+1 hour'));
+            $token = bin2hex(random_bytes(16)); // Génération d'un token aléatoire de 32 caractères
+            $expire = date('Y-m-d H:i:s', strtotime('+ 10 minutes')); // Expiration du token dans 10 minutes
 
-            // Enregistrer le token
+            // Enregistrer le token 
             $update = $bdd->prepare("UPDATE candidats SET reset_token=?, reset_token_expires=? WHERE id_candidat=?");
             $update->execute([$token, $expire, $candidat['id_candidat']]);
+            // Préparer le lien de réinitialisation en local 
 
-            // Lien (à remplacer par un envoi email en prod)
+
+            // Lien de réinitialisation (adapte le domaine en production)
             $lien = "http://localhost/projet_Rabya/candidats/reinitialise_mdp.php?token=$token";
-            $message = "Un lien de réinitialisation a été généré (affiché pour test).";
-            $typeMessage = "success";
 
-            // Affichage pour test
-            echo "<div class='alert alert-info text-center'>Lien de réinitialisation (test) : <a href='$lien'>$lien</a></div>";
+            // Envoi du mail via PHPMailer
+            $mail = new PHPMailer(true);
+
+            try {
+                // Configuration SMTP (exemple Gmail)
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com'; // Ton serveur SMTP, adapte si autre fournisseur
+                $mail->SMTPAuth = true;
+                $mail->Username = 'yacoubaarama12@gmail.com'; // Ton email d'envoi
+                $mail->Password = 'tgpy prek vjjc cxpu'; // Mot de passe d'application ou ton mot de passe email
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+
+                // Destinataire
+                $mail->setFrom('yacoubaarama12@gmail.com', 'IKBARA.'); // Nom de ton site
+                $mail->addAddress($email);
+
+                // Contenu du mail
+                $mail->isHTML(true);
+                $mail->Subject = 'Réinitialisation de votre mot de passe';
+                $mail->Body    = "Bonjour,<br><br>
+                    Vous avez demandé la réinitialisation de votre mot de passe.<br>
+                    Cliquez sur ce lien pour créer un nouveau mot de passe :<br>
+                    <a href='$lien'>$lien</a><br><br>
+                    Ce lien est valable 1 heure.<br><br>
+                    Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.";
+
+                $mail->send();
+                $message = "Un email de réinitialisation vient de vous être envoyé.";
+                $typeMessage = "success";
+            } catch (Exception $e) {
+                $message = "L'envoi de l'email a échoué. Veuillez réessayer. Erreur : " . $mail->ErrorInfo;
+                $typeMessage = "danger";
+            }
         } else {
             $message = "Aucun compte n'est associé à cet email.";
             $typeMessage = "danger";
         }
+        // if ($_SERVER['SERVER_NAME'] === 'localhost') {
+        //     echo "<div class='alert alert-info text-center'>Lien de réinitialisation (test local) : <a href='$lien'>$lien</a></div>";
+        // }
     }
 }
 ?>
@@ -82,7 +123,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-size: 18px;
             font-weight: bold;
         }
-        .alert{
+
+        .alert {
             margin-top: 0;
         }
     </style>
@@ -111,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <form method="post">
                         <div class="mb-3">
                             <label>Email :</label>
-                            <input type="email" name="email" class="form-control focus-shadow">
+                            <input type="email" name="email" class="form-control focus-shadow" required>
                         </div>
                         <div class="d-grid gap-2">
                             <button class="btn btn-primary btn-lg w-100">

@@ -15,7 +15,7 @@ if (!$id_candidat || !is_numeric($id_candidat)) {
 
 // Récupérer toutes les infos du candidat (profil + table candidat)
 $stmt = $bdd->prepare("
-    SELECT c.nom, c.prenom, c.email, c.avatar, p.competences, p.cv
+    SELECT c.nom, c.prenom, c.email, c.avatar, p.competences,p.experience, p.cv
     FROM candidats c
     LEFT JOIN profils_candidats p ON c.id_candidat = p.id_candidat
     WHERE c.id_candidat = ?
@@ -112,6 +112,28 @@ if (!$profil) {
         .back-link .btn {
             border-radius: 22px;
         }
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: transparent url('/projet_Rabya/igm/bg.jpg') no-repeat center center;
+            background-image: url('/projet_Rabya/igm/image.png');
+            background-size: cover;
+
+
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(0,0,0,.1);
+        }
+        .profile-container{
+            margin-top: 60px;
+        }
+        .profile-card{
+            margin-top: 100px;
+        }
     </style>
 </head>
 <body>
@@ -125,7 +147,9 @@ if (!$profil) {
                 <?= htmlspecialchars($profil['prenom'] . ' ' . $profil['nom']) ?>
             </div>
             <div class="candidate-email">
-                <i class="bi bi-envelope"></i> <?= htmlspecialchars($profil['email']) ?>
+                <a href="mailto:<?= htmlspecialchars($profil['email']) ?>" class="text-decoration-none">
+                    <?= htmlspecialchars($profil['email']) ?>
+                </a>
             </div>
 
             <div class="profile-section">
@@ -139,8 +163,16 @@ if (!$profil) {
                     <span class="text-muted">Non renseigné</span>
                 <?php endif; ?>
             </div>
+            <div class="profile-section text-muted text-center">
+                <h5><i class="bi bi-briefcase"></i> Expérience</h5>
+                <?php if ($profil['experience']): ?>
+                    <p><?= htmlspecialchars($profil['experience']) ?></p>
+                <?php else: ?>
+                    <span class="text-muted">Non renseigné</span>
+                <?php endif; ?>
+            </div>
 
-            <div class="profile-section">
+            <div class="profile-section ">
                 <h5><i class="bi bi-file-earmark-person"></i> CV</h5>
                 <?php if ($profil['cv']): ?>
                     <div class="profile-cv-link">

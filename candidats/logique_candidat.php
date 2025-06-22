@@ -47,17 +47,17 @@ if ($secteur) {
     $params['secteur'] = "%$secteur%";
 }
 
+// Ajoute TOUJOURS cette condition :
+$where[] = "o.statut = 'publiée'";
+
 $sql = "SELECT o.*, r.nom_entreprise, r.secteur
         FROM offres_emploi o
-        JOIN recruteurs r ON o.id_recruteur = r.id_recruteur";// On récupère les offres d'emploi avec les informations du recruteur
-        
-if ($where) {// Si des conditions de recherche sont définies, on les ajoute à la requête 
-    $sql .= " WHERE " . implode(' AND ', $where);// On ajoute les conditions de recherche 
+        JOIN recruteurs r ON o.id_recruteur = r.id_recruteur";
 
+if ($where) {
+    $sql .= " WHERE " . implode(' AND ', $where);
 }
-
-$sql .= " ORDER BY o.date_publication DESC LIMIT 3"; // Limite à 10 résultats pour la pagination
-
+$sql .= " ORDER BY o.date_publication DESC LIMIT 3";
 
 $stmt = $bdd->prepare($sql);// Préparation de la requête SQL
 $stmt->execute($params);// Exécution de la requête avec les paramètres

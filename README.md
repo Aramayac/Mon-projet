@@ -1,53 +1,64 @@
 # Plateforme de Recrutement en Ligne – IKBara
 
-Plateforme web complète pour la mise en relation entre candidats à l’emploi et recruteurs, avec gestion centralisée des offres, candidatures, et un espace d’administration sécurisé.
+Plateforme web complète pour la mise en relation entre candidats à l’emploi et recruteurs, avec gestion centralisée des offres, des candidatures et un espace d’administration sécurisé.
 
 ---
 
 ## Sommaire
 
+- [Présentation](#présentation)
 - [Fonctionnalités principales](#fonctionnalités-principales)
 - [Technologies utilisées](#technologies-utilisées)
 - [Structure du projet](#structure-du-projet)
 - [Installation](#installation)
+- [FAQ Installation et Utilisation](#faq-installation-et-utilisation)
 - [Détail des dossiers et fichiers](#détail-des-dossiers-et-fichiers)
 - [Sécurité](#sécurité)
+- [Contribution](#contribution)
+- [Licence](#licence)
 - [Crédits](#crédits)
+
+---
+
+## Présentation
+
+Ce projet est une plateforme web de recrutement en ligne développée dans un contexte universitaire et destinée à illustrer la conception d’applications web modernes : gestion multi-rôles (candidat, recruteur, administrateur), espaces personnels, notifications, et sécurité des données.
 
 ---
 
 ## Fonctionnalités principales
 
-### Candidats
-- Inscription, connexion, gestion du profil (CV, compétences, expériences…)
-- Parcours, recherche et filtrage des offres d’emploi
-- Postulation, suivi des candidatures, messagerie interne
+### Pour les candidats
+- Inscription, connexion, gestion du profil (CV, compétences, expériences)
+- Recherche et filtrage d’offres d’emploi
+- Postulation rapide, suivi de candidatures
+- Messagerie interne et notifications
 - Réinitialisation du mot de passe
 
-### Recruteurs
-- Inscription, connexion, gestion du profil entreprise
-- Publication, modification, suppression et gestion d’offres
+### Pour les recruteurs
+- Création de compte entreprise, gestion du profil
+- Publication, modification, suppression d’offres d’emploi
 - Consultation et gestion des candidatures reçues
-- Notification des candidats (messagerie interne/email)
-- Réinitialisation du mot de passe
+- Notifications automatiques aux candidats
 
-### Administrateur
+### Pour l’administration
 - Tableau de bord global (statistiques, monitoring)
-- Gestion des utilisateurs (activation, blocage) et offres (publication, masquage)
+- Gestion centralisée des utilisateurs (activation, blocage)
+- Modération des offres d’emploi
 - Connexion sécurisée
 
 ---
 
 ## Technologies utilisées
 
-- **PHP** (Back-end)
-- **MySQL** (Base de données)
-- **Bootstrap 5** & **Bootstrap Icons** (UI responsive)
-- **HTML5, CSS3, JavaScript**
-- **Composer** (gestion des dépendances)
-- **PHPMailer** (envoi d'emails)
-- **PlantUML** (modélisation UML)
-- **GitHub Actions** (workflow CI/CD)
+- **PHP** : back-end, logique métier, sécurité
+- **MySQL/MariaDB** : base de données relationnelle
+- **Bootstrap 5, Bootstrap Icons** : interface responsive
+- **HTML5, CSS3, JavaScript** : front-end dynamique
+- **Composer** : gestion des dépendances PHP
+- **PHPMailer** : gestion des emails
+- **PlantUML** : modélisation de la base de données
+- **GitHub Actions** : intégration continue et déploiement
 
 ---
 
@@ -55,36 +66,20 @@ Plateforme web complète pour la mise en relation entre candidats à l’emploi 
 
 ```
 .
-│   auth.php
-│   cahier_des_charges.md
-│   candidatplan.png
-│   composer.json / lock
-│   connexion.php
-│   contact.php
-│   dbdiagramme.pdf / .png
-│   deconnexion.php
-│   faq.php
-│   footer_contact.php
-│   header_contact.php
-│   Ikbaradiagrmme.pdf
-│   index.php
-│   inscri.php
-│   inscription.php
-│   insert.txt
-│   mailer_config.php
-│   README.md
-│   recrutement_en_ligne.sql
-├───.github/
-│   └───workflows/      # Intégration continue (tests, build)
-├───admin/              # Gestion admin (offres, users, stats)
-├───authentification/   # Connexion candidats & recruteurs
-├───candidats/          # Espace et logiques candidats
-├───configuration/      # Connexion à la base de données
-├───igm/                # Images, logos, ressources graphiques
-├───includes/           # Entêtes, pieds de page, composants réutilisables
-├───recruteurs/         # Espace et logiques recruteurs
-└───vendor/             # Librairies tierces (Composer, PHPMailer)
+├── admin/              # Interface et logique d’administration
+├── authentification/   # Connexion candidats/recruteurs
+├── candidats/          # Espace candidats (profil, candidatures, CV)
+├── configuration/      # Paramétrage base de données
+├── igm/                # Images, logos, ressources graphiques
+├── includes/           # Composants réutilisables (headers, footers…)
+├── recruteurs/         # Espace entreprises/recruteurs
+├── vendor/             # Librairies tierces (Composer, PHPMailer)
+├── .github/workflows/  # Workflows CI/CD
+├── README.md           # Ce fichier
+├── recrutement_en_ligne.sql # Script SQL de la base
+├── … (autres fichiers principaux)
 ```
+Chaque dossier/fichier est détaillé dans la section suivante.
 
 ---
 
@@ -101,97 +96,128 @@ Plateforme web complète pour la mise en relation entre candidats à l’emploi 
    composer install
    ```
 
-3. **Configurer la base de données**
+3. **Créer la base de données**
    - Importer le fichier `recrutement_en_ligne.sql` dans MySQL/MariaDB.
-   - Configurer l’accès DB dans `configuration/connexionbase.php`.
+   - Adapter les accès dans `configuration/connexionbase.php`.
 
-4. **Configurer l’e-mail**
-   - Modifier `mailer_config.php` pour vos identifiants SMTP (PHPMailer).
-   - Pour développement local, possible d’utiliser MailHog ou équivalent :
+4. **Configurer l’envoi d’emails**
+   - Editer `mailer_config.php` avec vos paramètres SMTP.
+   - Pour un environnement local : utiliser [MailHog](https://github.com/mailhog/MailHog) :
      ```
      [mail function]
      SMTP = 127.0.0.1
      smtp_port = 1025
      ```
 
-5. **Lancer le projet**
-   - Héberger sur serveur web local (XAMPP, WAMP, MAMP) ou PHP/MySQL en ligne.
-   - Accéder à l’URL du projet (ex : http://localhost/Mon-projet/).
+5. **Démarrer le serveur**
+   - Héberger le projet sur un serveur compatible PHP/MySQL (XAMPP, WAMP, MAMP, LAMP ou hébergement web).
+   - Accéder au projet via un navigateur (`http://localhost/Mon-projet/`).
+
+---
+
+## FAQ Installation et Utilisation
+
+**Q : Je n’ai pas PHP/Composer/MySQL sur ma machine. Que faire ?**  
+R : Installez un package comme XAMPP, WAMP, MAMP (Windows/Mac) ou LAMP (Linux). Ces solutions regroupent PHP, MySQL/MariaDB et un serveur web.
+
+**Q : J’ai une erreur de connexion à la base de données.**  
+R : Vérifiez que MySQL est bien démarré, que la base a été créée, et que `configuration/connexionbase.php` contient les bons accès (host, user, password, dbname).
+
+**Q : Les emails n’arrivent pas.**  
+R : En local, utilisez MailHog (voir section installation). En production, configurez `mailer_config.php` avec vos identifiants SMTP réels.
+
+**Q : Comment accéder directement aux fonctionnalités principales ?**  
+- Accueil : `index.php`
+- Inscription candidat : `inscription.php` ou `candidats/inscription_candidat.php`
+- Inscription recruteur : `recruteurs/inscription_recruteur.php`
+- Connexion : `connexion.php`
+- Dashboard admin : `admin/tableau_administateur.php`
+
+**Q : Comment réinitialiser un mot de passe ?**  
+R : Utiliser le lien « mot de passe oublié » sur la page de connexion adaptée (candidat ou recruteur).
+
+**Q : Peut-on déployer ce projet en ligne ?**  
+R : Oui, sur tout hébergeur PHP/MySQL acceptant Composer et la configuration SMTP.
 
 ---
 
 ## Détail des dossiers et fichiers
 
 ### `/admin`
-Gestion de la plateforme côté administrateur :
-- **admin_auth.php** : Login admin
-- **bloquer_offres.php**, **bloquer_users.php** : Blocage d’offres/utilisateurs
-- **connexion_adminstrateur.php**, **deconnexion.php** : Connexion/Déconnexion admin
-- **inscription_admin.php** : Création admin
-- **offres.php**, **users.php** : Gestion des offres et utilisateurs
-- **tableau_administateur.php** : Dashboard statistiques/monitoring
+- **Gestion administrateur** : login, dashboard, gestion des offres et utilisateurs, blocage, statistiques.
 
 ### `/authentification`
-Pages de connexion dédiées pour chaque rôle :
-- **connexion_candidat.php**
-- **connexion_recruteur.php**
+- **Connexion dédiée** pour candidats et recruteurs.
 
 ### `/candidats`
-Espace candidat (fonctionnalités majeures) :
-- Gestion du profil, messagerie interne, candidature, suivi, upload avatar/CV, réinitialisation mot de passe, etc.
-- **avatars/** : Photos de profil
-- **cv/** : CVs PDF des candidats
+- **Espace candidat** : gestion du profil, candidatures, messagerie, upload CV/avatar, réinitialisation mdp.
+- **avatars/** : Photos de profil.
+- **cv/** : CV PDF des candidats.
 
 ### `/recruteurs`
-Espace entreprise/recruteur :
-- Gestion du compte, publication/modification/suppression d’offres, réception des candidatures, notification des candidats, etc.
-- **dossier/** : Logos des entreprises
+- **Espace recruteur** : compte entreprise, gestion des offres, suivi des candidatures, notifications.
+- **dossier/** : Logos des entreprises.
 
 ### `/includes`
-Composants réutilisables :
-- **header.php**, **footer.php** (+ variantes)
-- **secteurs.php** : Liste des secteurs proposés
+- **Composants réutilisables** : headers, footers, menus dynamiques, secteurs.
 
 ### `/igm`
-Ressources graphiques du site (logos, illustrations, fonds, etc).
-- **silhouettes-modern-background/** : Images thème/design, licences
+- **Images et ressources graphiques** : logos, illustrations, fonds, licences.
 
 ### `/configuration`
-- **connexionbase.php** : Paramètres de connexion MySQL
+- **connexionbase.php** : accès à la base de données.
 
 ### `/vendor`
-Librairies tierces gérées par Composer.
-- **phpmailer/** : Gestion des emails sortants
+- **Librairies tierces** : PHPMailer, Composer.
 
-### Fichiers principaux à la racine
-- **index.php** : Page d’accueil
-- **inscription.php** : Formulaire d’inscription (raccourci)
-- **connexion.php** : Page de connexion globale
-- **contact.php**, **faq.php** : Support utilisateur
-- **recrutement_en_ligne.sql** : Script SQL à importer
-- **composer.json / lock** : Dépendances PHP/Composer
-- **README.md** : Ce fichier
-- **cahier_des_charges.md** : Spécifications détaillées du projet
-- **dbdiagramme.pdf/.png** : Schéma de la base
+### **Autres fichiers clés**
+- **index.php** : Page d’accueil
+- **inscription.php**, **connexion.php** : Accès rapide
+- **contact.php**, **faq.php** : Support utilisateur
+- **recrutement_en_ligne.sql** : Script SQL à importer
+- **cahier_des_charges.md** : Spécifications détaillées
+- **dbdiagramme.pdf/.png** : Schéma de la base
+- **README.md** : Ce fichier
 
 ---
 
 ## Sécurité
 
 - Mots de passe hashés (`password_hash`)
-- Contrôle de session/roles sur chaque page sensible
-- Upload sécurisé des fichiers (CV/images)
-- Gestion fine des statuts utilisateurs (actif/bloqué)
-- RGPD : Données personnelles traitées confidentiellement
+- Contrôle systématique des sessions et rôles
+- Upload sécurisé (CV, images…)
+- Statut actif/bloqué pour chaque compte
+- Conformité RGPD : données personnelles protégées
+
+---
+
+## Contribution
+
+Les contributions sont encouragées !  
+Pour participer :
+1. **Forkez** le projet et créez une branche dédiée à votre amélioration/bugfix.
+2. **Soumettez une Pull Request** détaillant votre modification.
+3. Pour signaler un bug ou suggérer une amélioration, ouvrez une **issue**.
+
+Merci de respecter la structure du code, la clarté des commits, et d’ajouter des commentaires si nécessaire.
+
+---
+
+## Licence
+
+Ce projet est publié sous licence MIT.  
+Cela signifie :
+- **Liberté d’utilisation** (usage personnel, académique, commercial…)
+- **Modification/distribution autorisée**
+- **Aucune garantie** : utilisation à vos risques et périls
+
+Voir le fichier `LICENSE` ou [opensource.org/licenses/MIT](https://opensource.org/licenses/MIT) pour les détails.
 
 ---
 
 ## Crédits
 
-Développé par [Aramayac](https://github.com/Aramayac) et collaborateurs, 2025.
-
----
-
-**Licence :** Open-source, [voir le dépôt](https://github.com/Aramayac/Mon-projet) pour plus d’infos.
+Développé par **Arama Yacouba** Etudiants en Reseaux Informatique, 2025.  
+Projet réalisé dans le cadre universitaire / Projet D'examen de la semestre 4.
 
 ---

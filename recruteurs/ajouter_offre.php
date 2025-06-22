@@ -2,17 +2,15 @@
 session_start();
 require_once __DIR__ . '/../configuration/connexionbase.php';
 include_once __DIR__ . '/../includes/header7.php';
-
 // PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 require __DIR__ . '/../vendor/autoload.php'; // adapte le chemin si besoin
-
 if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
     header("Location: /projet_Rabya/authentification/connexion_recruteur.php?redirect=ajouter_offre.php");
     exit();
 }
+
 
 $success = $error = "";
 

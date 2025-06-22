@@ -50,7 +50,7 @@
                         <i class="fas fa-flag" style="color: yellow;"></i>
                         <i class="fas fa-flag" style="color: red;"></i>
                     </p>
-                    <p><i class="fas fa-envelope me-2 text-warning"></i> contact@ikbara.com</p>
+                    <p><i class="fas fa-envelope me-2 text-warning"></i><a style="text-decoration: none; color:white;" href="../projet_Rabya/contact.php/"> Assistance@ikbara.com</a> </p>
                     <p><i class="fas fa-phone me-2 text-warning"></i> +223 90 90 90 90</p>
                     <p><i class="fas fa-print me-2 text-warning"></i> +223 82 88 73 87</p>
                 </div>

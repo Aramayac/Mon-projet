@@ -92,7 +92,7 @@
                 <li class="nav-item"><a class="nav-link text-white" href="/projet_Rabya/recruteurs/offres.php">Offres d'emplois</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="/projet_Rabya/authentification/connexion_candidat.php">Candidats</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="/projet_Rabya/authentification/connexion_recruteur.php">Recruteurs</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/../projet_Rabya/contact.php/">Contact</a></li>
                 <li class="nav-item text-end">
                     <a class="nav-link text-white" href="../deconnexion.php">Déconnexion</a>
                 </li>

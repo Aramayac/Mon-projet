@@ -2,70 +2,70 @@
        🔹 PROFILS DES CANDIDATS
 ======================================
 
-Candidat 1 :
+Candidat 1 :yacoubaarama12@gmail.com
 Téléphone : 771234567
 Niveau d'étude : Licence Informatique
 Expérience : 2 ans de stage en développement web
 Compétences : PHP, MySQL, UML
 CV : cv_moussa.pdf
 
-Candidat 2 :
+Candidat 2 :FATIMA10@GMAIL.COM
 Téléphone : 781112233
 Niveau d'étude : BTS Réseaux Télécom
 Expérience : 1 an chez Orange Sénégal
 Compétences : Réseaux, Sécurité, Cisco
 CV : cv_aminata.pdf
 
-Candidat 3 :
+Candidat 3 :seck12@gmail.com
 Téléphone : 765432198
 Niveau d'étude : Master Finance
 Expérience : Analyste financier chez Ecobank
 Compétences : Excel, VBA, Gestion financière
 CV : cv_diallo.pdf
 
-Candidat 4 :
+Candidat 4 :ka12@gmail.com
 Téléphone : 701234890
 Niveau d'étude : Licence Gestion RH
 Expérience : Stage chez Sonatel RH
 Compétences : Recrutement, Communication, Word
 CV : cv_fatou.pdf
 
-Candidat 5 :
+Candidat 5 :seck11@gmail.com
 Téléphone : 777771111
 Niveau d'étude : Licence Développement Web
 Expérience : Freelance full-stack
 Compétences : Laravel, JavaScript, API REST
 CV : cv_ibrahima.pdf
 
-Candidat 6 :
+Candidat 6 :ginie01@gmail.com
 Téléphone : 764445555
 Niveau d'étude : Licence Informatique
 Expérience : Stage à l’ADIE
 Compétences : HTML, CSS, PHP
 CV : cv_ndiaye.pdf
 
-Candidat 7 :
+Candidat 7 :sall@gmail.com
 Téléphone : 781212345
 Niveau d'étude : BAC+2 Data
 Expérience : Projet d’analyse Excel et Python
 Compétences : Python, Power BI, SQL
 CV : cv_omar.pdf
 
-Candidat 8 :
+Candidat 8 :safi@gmail.com
 Téléphone : 763003003
 Niveau d'étude : Master Logistique
 Expérience : 2 ans – Dakar Terminal
 Compétences : Planification, ERP
 CV : cv_astou.pdf
 
-Candidat 9 :
+Candidat 9 :gloire@gmail.com
 Téléphone : 770707707
 Niveau d'étude : Licence Droit
 Expérience : Assistant juridique – Me Diop & Associés
 Compétences : Archivage, Rédaction, Droit du travail
 CV : cv_khadim.pdf
 
-Candidat 10 :
+Candidat 10 :racine@gmail.com
 Téléphone : 779999999
 Niveau d'étude : Master Business Intelligence
 Expérience : Stage BI chez CBAO
@@ -185,3 +185,107 @@ Date publication : 2025-06-21
 Date expiration : 2025-07-20  
 Statut : en_attente  
 Description : Suivi projet, réunions, coordination agile.
+==============================
+        🔹 RECRUTEURS – MALI
+==============================
+
+Recruteur 1 :
+Nom de l’entreprise : AgriMali Coop
+Secteur : Agriculture durable
+Email : mali@gmail.com
+Adresse : Quartier Lafiabougou, Bamako
+Téléphone : 76 123 45 67
+Description : Coopérative axée sur la culture maraîchère et les formations rurales.
+Mot de passe : agricoop22
+Logo : logo_agrimali.png
+
+Recruteur 2 :
+Nom de l’entreprise : Bamako Digital
+Secteur : Technologies
+Email : @bamakodigital.ml
+Adresse : ACI 2000, Rue 203, Bamako
+Téléphone : 77 888 66 00
+Description : Entreprise spécialisée dans le développement web et mobile.
+Mot de passe : digitechml
+Logo : logo_bamako_digital.png
+
+Recruteur 3 :
+Nom de l’entreprise : Humania RH Mali
+Secteur : Ressources humaines
+Email : recrutement@humania.ml
+Adresse : Badalabougou Est, Bamako
+Téléphone : 70 445 78 90
+Description : Cabinet de recrutement et d’accompagnement RH.
+Mot de passe : rh2025ml
+Logo : logo_humania.png
+
+Recruteur 4 :
+Nom de l’entreprise : Sotrali Express
+Secteur : Logistique
+Email : info@sotrali.ml
+Adresse : Zone Industrielle, Sotuba, Bamako
+Téléphone : 75 998 00 11
+Description : Livraison logistique interurbaine et régionale.
+Mot de passe : sotramali
+Logo : logo_sotrali.png
+
+Recruteur 5 :
+Nom de l’entreprise : JurisMali Conseil
+Secteur : Juridique
+Email : juridique@jurismali.ml
+Adresse : Hippodrome, Bamako
+Téléphone : 76 333 77 44
+Description : Cabinet d’avocats et de consultants en droit fiscal et social.
+Mot de passe : legal223
+Logo : logo_jurismali.png
+
+Recruteur 6 :
+Nom de l’entreprise : BioFaso Agro
+Secteur : Agribusiness
+Email : agro@biofaso.ml
+Adresse : Sikasso – Route nationale RN7
+Téléphone : 78 345 66 78
+Description : Producteurs de légumes biologiques et distributeurs locaux.
+Mot de passe : sikagro2025
+Logo : logo_biofaso.png
+
+Recruteur 7 :
+Nom de l’entreprise : BamakoMedia
+Secteur : Communication digitale
+Email : contact@bamakomedia.ml
+Adresse : Korofina Nord, Bamako
+Téléphone : 79 456 11 22
+Description : Studio spécialisé en contenu visuel, community management et publicité.
+Mot de passe : media_bko
+Logo : bamako_media_logo.png
+
+Recruteur 8 :
+Nom de l’entreprise : SantéPlus ONG
+Secteur : Éducation/Santé
+Email : admin@santeplus.ml
+Adresse : Mopti, quartier Taoudéni
+Téléphone : 74 234 55 66
+Description : Programme de sensibilisation sanitaire en milieu scolaire rural.
+Mot de passe : santéML24
+Logo : logo_santeplus.png
+
+Recruteur 9 :
+Nom de l’entreprise : MaliConstruct
+Secteur : BTP
+Email : rh@maliconstruct.ml
+Adresse : Ségou, Route de San
+Téléphone : 75 111 22 33
+Description : Travaux de construction et rénovation de bâtiments publics.
+Mot de passe : malibtp
+Logo : logo_maliconstruct.png
+
+Recruteur 10 :
+Nom de l’entreprise : FasoFinance
+Secteur : Finance
+Email : emploi@fasofinance.ml
+Adresse : Kayes, Quartier Médine
+Téléphone : 71 999 33 44
+Description : Institution de microfinance au service des petits entrepreneurs.
+Mot de passe : financeMali
+Logo : fasofin_logo.png
+

@@ -2,12 +2,12 @@
 require_once __DIR__ . '/../configuration/connexionbase.php';
 
 
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    echo '<div class="alert alert-danger text-center mt-5">Aucune offre sélectionnée.</div>';
-    require_once 'footer.php';
-    exit;
+// Vérification de la session
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location: /projet_Rabya/authentification/connexion_recruteur.php?error=non_connecte");
+    exit();
 }
-
 $id_offre = intval($_GET['id']);
 
 $req = $bdd->prepare("

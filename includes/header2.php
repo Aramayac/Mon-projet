@@ -162,7 +162,7 @@
           <li class="nav-item"><a class="nav-link" href="/projet_Rabya/recruteurs/offres.php">Offres d'emplois</a></li>
           <li class="nav-item"><a class="nav-link" href="/projet_Rabya/authentification/connexion_candidat.php">Candidats</a></li>
           <li class="nav-item"><a class="nav-link" href="/projet_Rabya/authentification/connexion_recruteur.php">Recruteurs</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/../projet_Rabya/contact.php/">Contact</a></li>
         </ul>
       </div>
       <a href="/projet_Rabya/authentification/connexion_recruteur.php" class="btn btn-job ms-2"><i class="fas fa-plus me-1"></i> Créer un Job</a>

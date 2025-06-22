@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['utilisateur']['id'])) {
-    echo "Erreur : Session utilisateur introuvable.";
+    header("Location: /projet_Rabya/connexion.php?message=connexion_requise");
     exit;
 }
 $id_candidat = $_SESSION['utilisateur']['id'];

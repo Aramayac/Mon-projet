@@ -53,6 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .container {
             margin-top: 80px;
         }
+        .card {
+            max-width: 600px;
+            margin: auto;
+            border-radius: 1.5rem;
+        }
     </style>
 </head>
 

@@ -7,7 +7,8 @@ if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
     exit();
 }
 
-$id_candidat = $_GET['id_candidat'] ?? null;
+
+$id_candidat = $_GET['id_candidat'] ?? null;//
 if (!$id_candidat || !is_numeric($id_candidat)) {
     header("Location: tableau_recruteur.php?message=erreur");
     exit();

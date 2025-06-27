@@ -74,6 +74,10 @@ $offres = $req->fetchAll(PDO::FETCH_ASSOC);
                                         </h6>
                                     </div>
                                 </div>
+                                <!-- secteur d'activité -->
+                                 <h6 style=" color:black; font-size:large; font-weight:bold"> 
+                                    <?= htmlspecialchars($offre['secteur']) ?>
+                                 </h6>
 
                                 <!--  Informations principales -->
                                 <ul class="list-unstyled">

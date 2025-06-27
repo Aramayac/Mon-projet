@@ -75,8 +75,18 @@ CV : cv_binta.pdf
 ======================================
        🔸 OFFRES D'EMPLOI RECRUTEURS
 ======================================
-
-Offre 1 – Recruteur ID : 1  
+FATIMA10@GMAIL.COM
+seck12@gmail.com
+ka12@gmail.com
+seck11@gmail.com
+ginie01@gmail.com
+sall@gmail.com
+safi@gmail.com
+gloire@gmail.com
+racine@gmail.com
+msek3999@gmail.com
+mouhamedseck0604@gmail.com
+Offre 1 – Recruteur ID : 1  # msek3999@gmail.com 
 Titre : Développeur Full Stack PHP  
 Secteur : Informatique  
 Lieu : Dakar  
@@ -87,7 +97,7 @@ Date expiration : 2025-06-30
 Statut : en_attente  
 Description : Projets Laravel & React dans une équipe agile.
 
-Offre 2 – Recruteur ID : 2  
+Offre 2 – Recruteur ID : 2 # sall@gmail.com
 Titre : Responsable RH junior  
 Secteur : Ressources Humaines  
 Lieu : Thiès  
@@ -98,7 +108,7 @@ Date expiration : 2025-06-25
 Statut : en_attente  
 Description : Gestion du personnel, recrutement, suivi administratif.
 
-Offre 3 – Recruteur ID : 3  
+Offre 3 – Recruteur ID : 3 # mouhamedseck0604@gmail.com 
 Titre : Technicien Réseaux & Systèmes  
 Secteur : IT  
 Lieu : Saint-Louis  
@@ -120,7 +130,7 @@ Date expiration : 2025-07-15
 Statut : en_attente  
 Description : Encadrement en agroécologie de groupes locaux.
 
-Offre 5 – Recruteur ID : 4  
+Offre 5 – Recruteur ID : 4  #ka12@gmail.com
 Titre : Chargé de communication digitale  
 Secteur : Marketing  
 Lieu : Télétravail  
@@ -131,7 +141,7 @@ Date expiration : 2025-06-30
 Statut : en_attente  
 Description : Community management, newsletters et reporting.
 
-Offre 6 – Recruteur ID : 5  
+Offre 6 – Recruteur ID : 5  #ginie01@gmail.com
 Titre : Comptable confirmé  
 Secteur : Finance  
 Lieu : Dakar Plateau  
@@ -142,7 +152,7 @@ Date expiration : 2025-06-25
 Statut : en_attente  
 Description : Clôture, trésorerie, gestion budgétaire.
 
-Offre 7 – Recruteur ID : 3  
+Offre 7 – Recruteur ID : 3 # safi@gmail.com
 Titre : Assistant administratif polyvalent  
 Secteur : Administration  
 Lieu : Mbour  
@@ -164,7 +174,7 @@ Date expiration : 2025-07-15
 Statut : en_attente  
 Description : Réparation machines de production.
 
-Offre 9 – Recruteur ID : 4  
+Offre 9 – Recruteur ID : 4 gloire@gmail.com 
 Titre : Formateur bureautique Word/Excel  
 Secteur : Formation  
 Lieu : Ziguinchor  
@@ -175,7 +185,7 @@ Date expiration : 2025-07-10
 Statut : en_attente  
 Description : Modules pratiques en bureautique.
 
-Offre 10 – Recruteur ID : 5  
+Offre 10 – Recruteur ID : 5 FATIMA10@GMAIL.COM 
 Titre : Chef de projet junior  
 Secteur : Informatique  
 Lieu : Dakar Almadies  
@@ -288,4 +298,119 @@ Téléphone : 71 999 33 44
 Description : Institution de microfinance au service des petits entrepreneurs.
 Mot de passe : financeMali
 Logo : fasofin_logo.png
+
+==============================
+        🔹 RECRUTEURS – MALI
+==============================
+
+Recruteur 1 :
+Nom de l’entreprise : MaliSolar Tech
+Secteur : Énergies renouvelables
+Email : contact@malisolar.ml
+Adresse : Niamakoro, Bamako
+Téléphone : 77 221 33 77
+Description : Fournisseur de kits solaires et formations en énergie solaire.
+Mot de passe : sunPower2025
+Logo : logo_malisolar.png
+
+Recruteur 2 :
+Nom de l’entreprise : NeoTour Mali
+Secteur : Tourisme
+Email : info@neotour.ml
+Adresse : Mopti, Rue de l’Indépendance
+Téléphone : 76 119 55 88
+Description : Agence de voyages spécialisée dans le tourisme culturel.
+Mot de passe : exploreMali
+Logo : logo_neotour.png
+
+Recruteur 3 :
+Nom de l’entreprise : Sahel Telecom
+Secteur : Télécommunications
+Email : rh@saheltelecom.ml
+Adresse : Bamako Coura, Rue 520
+Téléphone : 75 884 99 22
+Description : Opérateur de télécommunications local.
+Mot de passe : telecomSahel
+Logo : logo_saheltelecom.png
+
+Recruteur 4 :
+Nom de l’entreprise : MaliEdTech
+Secteur : Informatique
+Email : jobs@maliedtech.ml
+Adresse : Sogoniko, Bamako
+Téléphone : 78 443 21 78
+Description : Plateforme d’e-learning proposant des cours en ligne.
+Mot de passe : learn223
+Logo : logo_maliedtech.png
+
+Recruteur 5 :
+Nom de l’entreprise : SahelSoft
+Secteur : Informatique
+Email : recrutement@sahelsoft.ml
+Adresse : Djélibougou, Bamako
+Téléphone : 76 998 34 01
+Description : Concepteur de logiciels métiers pour PME africaines.
+Mot de passe : softml2025
+Logo : logo_sahelsoft.png
+
+Recruteur 6 :
+Nom de l’entreprise : LegalStart Mali
+Secteur : Juridique
+Email : contact@legalstart.ml
+Adresse : ACI 2000, immeuble Touba, Bamako
+Téléphone : 78 225 90 01
+Description : Service d’assistance juridique en ligne.
+Mot de passe : legalonline
+Logo : logo_legalstart.png
+
+Recruteur 7 :
+Nom de l’entreprise : MaliArt Vision
+Secteur : Communication visuelle / Informatique
+Email : vision@maliart.ml
+Adresse : Badalabougou, Rue 26
+Téléphone : 78 772 90 01
+Description : Collectif de créatifs en graphisme, web design et vidéo.
+Mot de passe : artvision
+Logo : logo_maliart.png
+
+Recruteur 8 :yacoubaarama06@gmail
+Nom de l’entreprise : CyberForce Mali
+Secteur : Cybersécurité
+Email : cyber@cf-mali.ml
+Adresse : Niaréla, Bamako
+Téléphone : 70 993 45 99
+Description : Expert en sécurité informatique et audits réseaux.
+Mot de passe : secure@223
+Logo : logo_cyberforce.png
+
+Recruteur 9 :
+Nom de l’entreprise : InnovDev
+Secteur : Développement logiciel
+Email : dev@innovdev.ml
+Adresse : Quartier Magnambougou, Bamako
+Téléphone : 71 001 22 33
+Description : Développement d’applications web, mobile et IA.
+Mot de passe : codepro2025
+Logo : logo_innovdev.png
+
+Recruteur 10 :
+Nom de l’entreprise : DataNext Mali
+Secteur : Intelligence Artificielle et Data Science
+Email : datanext@ml-data.com
+Adresse : Badalabougou SEMA, Bamako
+Téléphone : 72 109 88 77
+Description : Solutions d’analyse de données pour les institutions publiques.
+Mot de passe : smartdata223
+Logo : logo_datanext.png
+FATIMA10@GMAIL.COM
+seck12@gmail.com
+ka12@gmail.com
+seck11@gmail.com
+ginie01@gmail.com
+sall@gmail.com
+safi@gmail.com
+gloire@gmail.com
+racine@gmail.com
+msek3999@gmail.com
+mouhamedseck0604@gmail.com
 

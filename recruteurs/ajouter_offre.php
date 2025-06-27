@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $success = "Offre ajoutée avec succès. Elle sera publiée après validation par l'administration.";
 
             // --- PHPMailer - Notification à l'admin ---
-            $admin_email = "yacoubaarama06@gmail.com"; // Mets ici l'email réel de l'admin
+            $admin_email = "yacoubaarama13@gmail.com"; // Mets ici l'email réel de l'admin
 
             $mail = new PHPMailer(true);
             try {

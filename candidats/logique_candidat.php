@@ -57,7 +57,7 @@ $sql = "SELECT o.*, r.nom_entreprise, r.secteur
 if ($where) {
     $sql .= " WHERE " . implode(' AND ', $where);
 }
-$sql .= " ORDER BY o.date_publication DESC LIMIT 3";
+$sql .= " ORDER BY o.date_publication DESC LIMIT 4";
 
 $stmt = $bdd->prepare($sql);// Préparation de la requête SQL
 $stmt->execute($params);// Exécution de la requête avec les paramètres

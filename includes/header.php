@@ -184,7 +184,7 @@
     </nav>
     <!-- Hero Content -->
     <div class="hero-content container">
-      <h1 class="fw-bold display-4">Vous etes au bon endroit , chez IKBara job on line</h1>
+      <h1 class="fw-bold display-4">Vous etes au bon endroit , chez IKBara, Numero 1 en Afrique</h1>
       <div class="text-center mb-4">
         <h5 class="">Candidats, trouvez l'emploi de vos rêves. Recruteurs, trouvez le bon talent.</h5>
       </div>

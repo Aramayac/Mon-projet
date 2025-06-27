@@ -187,6 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .btn-whatsapp {
             background: #25d366;
+            background-color: #21b858;
             color: #fff;
             border-radius: 21px;
             font-weight: 600;
@@ -208,9 +209,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 padding: 18px 9px 18px 9px;
             }
         }
+
+        .btn-whatsapp {
+            background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+            color: #fff !important;
+            font-weight: 600;
+            font-size: 1.09em;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 3px 12px #128c7e26;
+            transition: background .18s, box-shadow .18s, transform .13s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 0;
+            letter-spacing: .01em;
+        }
+
+        .btn-whatsapp .bi-whatsapp {
+            font-size: 1.32em;
+            margin-right: 9px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+
+        .btn-whatsapp:hover,
+        .btn-whatsapp:focus {
+            background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
+            color: #fff !important;
+            box-shadow: 0 6px 22px #25d36633;
+            
+            transform: scale(1.04);
+            text-decoration: none;
+        }
+    </style>
+
+
     </style>
 </head>
 <?php include '../projet_Rabya/header_contact.php'; ?>
+
 <body>
     <div class="container">
         <div class="row justify-content-center">
@@ -241,7 +280,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                                 <a href="<?= $whatsapp_link ?>"
                                     target="_blank" class="btn btn-whatsapp w-100 mt-2">
-                                    <i class="bi bi-whatsapp"></i> Discussion WhatsApp directe
+                                    <i class="bi bi-whatsapp"></i>
+                                    Discussion WhatsApp directe
                                 </a>
                             </div>
                             <div class="info-card">
@@ -323,7 +363,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
-        
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -344,4 +384,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </body>
 <?php include '../projet_Rabya/footer_contact.php'; ?>
+
 </html>

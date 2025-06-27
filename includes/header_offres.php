@@ -2,10 +2,10 @@
 session_start();
 require_once __DIR__ . '/../configuration/connexionbase.php';
 // Vérification de la session
-if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
-    header("Location: /projet_Rabya/authentification/connexion_recruteur.php?redirect=" . urlencode($_SERVER['REQUEST_URI']));
-    exit();
-}
+// if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
+//     header("Location: /projet_Rabya/authentification/connexion_recruteur.php?redirect=" . urlencode($_SERVER['REQUEST_URI']));
+//     exit();
+// }
 ?>
 
 <!DOCTYPE html>

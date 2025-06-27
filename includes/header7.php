@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
-    header("Location: /projet_Rabya/authentification/connexion_recruteur.php?redirect=" . urlencode($_SERVER['REQUEST_URI']));
-    exit();
-}
+// session_start();
+// if (!isset($_SESSION['utilisateur']) || $_SESSION['role'] !== 'recruteur') {
+//     header("Location: /projet_Rabya/authentification/connexion_recruteur.php?redirect=" . urlencode($_SERVER['REQUEST_URI']));
+//     exit();
+// }
 require_once __DIR__ . '/../configuration/connexionbase.php';
 ?>
 <!DOCTYPE html>

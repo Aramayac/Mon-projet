@@ -36,6 +36,7 @@ if (!$profil) {
     <title>Profil du candidat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
     <style>
         body {
             background: #f5f7fa;
@@ -135,6 +136,21 @@ if (!$profil) {
         .profile-card{
             margin-top: 100px;
         }
+          .btn-modern {
+            border-radius: 27px;
+            font-weight: 500;
+            box-shadow: 0 2px 9px rgba(0, 153, 204, .09);
+            transition: background .15s, color .15s, box-shadow .18s, transform .13s;
+            padding: 7px 22px;
+        }
+
+        .btn-modern:hover,
+        .btn-modern:focus {
+            background: linear-gradient(90deg, #0099cc 20%, #006699 80%);
+            color: #fff;
+            transform: scale(1.07);
+            box-shadow: 0 6px 22px #0099cc44;
+        }
     </style>
 </head>
 <body>
@@ -164,7 +180,7 @@ if (!$profil) {
                     <span class="text-muted">Non renseigné</span>
                 <?php endif; ?>
             </div>
-            <div class="profile-section text-muted text-center">
+            <div class="profile-section text-muted text-start">
                 <h5><i class="bi bi-briefcase"></i> Expérience</h5>
                 <?php if ($profil['experience']): ?>
                     <p><?= htmlspecialchars($profil['experience']) ?></p>
@@ -173,20 +189,21 @@ if (!$profil) {
                 <?php endif; ?>
             </div>
 
-            <div class="profile-section ">
-                <h5><i class="bi bi-file-earmark-person"></i> CV</h5>
-                <?php if ($profil['cv']): ?>
-                    <div class="profile-cv-link">
-                        <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-file-earmark-arrow-down"></i> Voir le CV
-                        </a>
-                    </div>
-                <?php else: ?>
-                    <span class="text-muted">Aucun CV</span>
-                <?php endif; ?>
-            </div>
+           <div class="col-md-6 mb-2">
+    <p><strong>CV :</strong></p>
+    <?php if ($profil['cv']): ?>
+        <div class="d-flex justify-content-between">
+            <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>" class="btn btn-outline-primary btn-sm btn-modern">
+                Voir mon CV
+            </a>
+            <a href="/projet_Rabya/candidats/cv/<?= htmlspecialchars($profil['cv']) ?>" class="btn btn-outline-success btn-sm btn-modern" download>
+                <i class="bi bi-download"></i> Télécharger
+            </a>
+        </div>
+    <?php else: ?>
+        <span class="text-muted">Aucun CV ajouté</span>
+    <?php endif; ?>
+</div>
 
             <div class="back-link">
                 <a href="javascript:history.back()" class="btn btn-outline-secondary">

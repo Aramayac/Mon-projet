@@ -46,6 +46,7 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
 <head>
     <meta charset="UTF-8">
     <title>Tableau de bord - Recruteur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <!-- SweetAlert2 -->
@@ -55,29 +56,23 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
         body {
-            background: linear-gradient(135deg, #e0e7ef 0%, #f8fafd 100%);
+            background: linear-gradient(120deg, #e0e7ef 0%, #f8fafd 100%);
             min-height: 100vh;
-            transition: background .5s, color .5s;
+            font-family: 'Poppins', 'Inter', Arial, sans-serif;
+            color: #243046;
         }
 
-        .dark-mode {
-            background: #181e27 !important;
-            color: #e4e8ef !important;
+        .futur-glow {
+            box-shadow: 0 0 32px 6px #00cfff22, 0 2px 24px 0 #c6eaff60;
+            border: 1.5px solid #00cfff33;
+            background: rgba(255, 255, 255, 0.95);
         }
 
-        .dark-mode .card,
-        .dark-mode .offre-card {
-            background: #232c3a !important;
-            color: #e4e8ef;
-        }
-
-        .dark-mode .btn-modern {
-            background: #003366 !important;
-            color: #fff;
-        }
-
-        .dark-mode .footer {
-            background: #15191f !important;
+        .futur-glow-header {
+            background: linear-gradient(90deg, #0099cc 80%, #1976d2 100%);
+            color: #fff !important;
+            border-radius: 21px 21px 0 0;
+            box-shadow: 0 2px 15px #00cfff33 inset;
         }
 
         .logo-rond {
@@ -85,8 +80,8 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
             height: 110px;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid #0d6efd;
-            box-shadow: 0 2px 18px rgba(0, 102, 204, 0.12);
+            border: 3.5px solid #00cfff;
+            box-shadow: 0 2px 22px #00cfff55;
             background: #fff;
             margin-bottom: 18px;
             cursor: pointer;
@@ -94,9 +89,9 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
         }
 
         .logo-rond:hover {
-            box-shadow: 0 0 0 8px #0d6efd44;
-            opacity: 0.85;
-            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 0 0 9px #00cfff55;
+            opacity: 0.87;
+            transform: scale(1.09) rotate(-4deg);
         }
 
         .file-input {
@@ -111,49 +106,73 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
 
         .info-label {
             width: 170px;
-            color: #555;
+            color: #0099cc;
         }
 
-        .btn-modern {
-            border-radius: 29px;
+        .btn-futur {
+            border-radius: 30px;
             font-weight: 500;
-            box-shadow: 0 2px 9px rgba(0, 153, 204, .09);
-            transition: background .16s, color .15s, box-shadow .18s, transform .13s;
-            padding: 8px 28px;
+            box-shadow: 0 2px 12px #00cfff33;
+            padding: 9px 30px;
+            border: none;
+            background: linear-gradient(90deg, #00cfff 60%, #1976d2 100%);
+            color: #fff;
+            transition: background .16s, color .16s, box-shadow .16s, transform .12s;
         }
 
-        .btn-modern:hover,
-        .btn-modern:focus {
-            background: linear-gradient(90deg, #0099cc 20%, #006699 80%);
+        .btn-futur:hover,
+        .btn-futur:focus {
+            background: linear-gradient(90deg, #1976d2 30%, #00cfff 100%);
             color: #fff;
-            transform: scale(1.08);
-            box-shadow: 0 6px 22px #0099cc44;
+            transform: scale(1.07);
+            box-shadow: 0 8px 28px #00cfff55;
+        }
+
+        .btn-futur-outline {
+            border-radius: 30px;
+            font-weight: 500;
+            box-shadow: 0 2px 10px #00cfff22;
+            padding: 9px 30px;
+            color: #00cfff;
+            background: transparent;
+            border: 2px solid #00cfff;
+            transition: background .15s, color .2s, box-shadow .13s, transform .12s;
+        }
+
+        .btn-futur-outline:hover,
+        .btn-futur-outline:focus {
+            background: #00cfff;
+            color: #fff;
+            border: 2px solid #00cfff;
+            box-shadow: 0 7px 20px #00cfff55;
+            transform: scale(1.06);
         }
 
         .offre-card {
-            background: linear-gradient(97deg, #f6fdff 70%, #e3f0fa 100%);
-            border-left: 5px solid #0099cc;
-            border-radius: 16px;
-            margin-bottom: 26px;
-            box-shadow: 0 2px 12px 0 rgba(0, 153, 204, 0.07);
-            padding: 21px 26px;
-            transition: box-shadow .16s, transform .12s, background .5s, color .5s;
+            background: linear-gradient(97deg, #f6fdff 67%, #e6f8fc 100%);
+            border-left: 5px solid #00cfff;
+            border-radius: 18px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 14px 0 #00cfff18, 0 1.5px 0 #00cfff22 inset;
+            padding: 22px 28px;
+            transition: box-shadow .17s, transform .13s, background .5s, color .5s;
             opacity: 0;
-            transform: translateY(24px) scale(.98);
-            animation: fadeUp .7s .28s forwards;
-        }
-
-        .offre-card:hover {
-            box-shadow: 0 10px 30px 0 rgba(0, 153, 204, 0.17);
-            transform: scale(1.016);
+            transform: translateY(26px) scale(.98);
+            animation: fadeUp .8s .29s forwards;
+            color: #243046;
         }
 
         .offre-card h5 {
             font-weight: 600;
-            color: #006699;
+            color: #00cfff;
             margin-bottom: 7px;
             display: flex;
             align-items: center;
+        }
+
+        .offre-card p,
+        .offre-card strong {
+            color: #273046;
         }
 
         .badge-status {
@@ -161,7 +180,17 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
             padding: 0.55em 1.3em;
             border-radius: 17px;
             letter-spacing: .03em;
-            box-shadow: 0 1px 5px #0099cc18;
+            box-shadow: 0 1px 5px #00cfff18;
+        }
+
+        .offre-card:hover {
+            box-shadow: 0 14px 34px 0 #00cfff2e, 0 1.5px 0 #00cfff inset;
+            transform: scale(1.021);
+        }
+
+        .table-borderless td,
+        .table-borderless th {
+            background: transparent !important;
         }
 
         @keyframes fadeUp {
@@ -191,33 +220,51 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
             .logo-rond {
                 margin-bottom: 14px;
             }
+
+            .offre-card {
+                padding: 14px 7px;
+            }
         }
     </style>
 </head>
 
 <body>
     <?php include __DIR__ . '/../includes/header_recruteurs.php'; ?>
-    <button id="toggle-theme" class="btn btn-dark position-fixed top-0 end-0 m-3" title="Changer de thème" style="z-index:1200;">🌙</button>
     <div class="container py-5">
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: "Bienvenue <?= htmlspecialchars($recruteur['nom_entreprise']) ?> !",
-                    text: "Gérez vos offres d'emploi simplement.",
-                    icon: "info",
-                    showConfirmButton: false,
-                    timer: 2100
-                });
+                let affichages = localStorage.getItem('bienvenueAfficheeCount');
+
+                if (!affichages) {
+                    affichages = 0;
+                }
+
+                if (parseInt(affichages) < 2) {
+                    Swal.fire({
+                        title: '<i class="bi bi-building text-primary me-2"></i>Bienvenue <?= htmlspecialchars($recruteur['nom_entreprise']) ?> !',
+                        text: "Gérez vos offres d'emploi simplement.",
+                        icon: "info",
+                        showConfirmButton: false,
+                        timer: 2100
+                    });
+
+                    localStorage.setItem('bienvenueAfficheeCount', parseInt(affichages) + 1);
+                }
             });
         </script>
-        <h2 class="text-center mb-4 text-primary" style="padding-top:70px;">
-            <i class="bi bi-building"></i> Bienvenue, <?= htmlspecialchars($recruteur['nom_entreprise']) ?> 👋
+
+
+        <h2 class="text-center mb-4" style="color:#00cfff; letter-spacing:1.2px; padding-top:70px; text-shadow:0 2px 18px #00cfff55;">
+            <i class="bi bi-building text-info me-2"></i> Bienvenue, <?= htmlspecialchars($recruteur['nom_entreprise']) ?> <span class="fw-light"></span>
         </h2>
+
         <!-- Infos recruteur -->
-        <div class="card shadow mb-4 border-0 rounded-4">
-            <div class="card-header bg-primary text-white rounded-top-4">
+        <div class="card shadow mb-4 border-0 rounded-4 futur-glow">
+            <div class="card-header futur-glow-header rounded-top-4">
                 <h5 class="mb-0"><i class="bi bi-building me-2"></i>Vos informations</h5>
+                
             </div>
+            
             <div class="card-body card-infos">
                 <!-- Logo rond -->
                 <div>
@@ -236,32 +283,34 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
                     <table class="table table-borderless mb-0">
                         <tbody>
                             <tr>
-                                <td class="info-label"><i class="bi bi-envelope-fill text-secondary me-2"></i><strong>Email :</strong></td>
+                                <td class="info-label"><i class="bi bi-envelope-fill text-info me-2"></i><strong>Email :</strong></td>
                                 <td><?= htmlspecialchars($recruteur['email']) ?></td>
                             </tr>
                             <tr>
-                                <td class="info-label"><i class="bi bi-building text-secondary me-2"></i><strong>Entreprise :</strong></td>
+                                <td class="info-label"><i class="bi bi-building text-info me-2"></i><strong>Entreprise :</strong></td>
                                 <td><?= htmlspecialchars($recruteur['nom_entreprise']) ?></td>
                             </tr>
                             <tr>
-                                <td class="info-label"><i class="bi bi-diagram-3-fill text-secondary me-2"></i><strong>Secteur :</strong></td>
+                                <td class="info-label"><i class="bi bi-diagram-3-fill text-info me-2"></i><strong>Secteur :</strong></td>
                                 <td><?= htmlspecialchars($recruteur['secteur']) ?></td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-start mt-3">
-                        <a href="/projet_Rabya/recruteurs/modifier_recruteur.php" class="btn btn-outline-primary btn-modern btn-sm">
-                            <i class="bi bi-pencil-square"></i> Modifier mes informations
+                    <div class="text-start mt-3 ">
+                        <a href="/projet_Rabya/recruteurs/modifier_recruteur.php" class="btn btn-futur-outline btn-sm">
+                            <i class="bi bi-pencil-square" style="font-weight: bold ; font-size:large ;color:#0dcaf0 "> Modifier mes informations</i>
                         </a>
                     </div>
+                    
                 </div>
+                
             </div>
         </div>
         <!-- Offres publiées -->
-        <div class="card shadow border-0 rounded-4 mt-4">
-            <div class="card-header bg-success text-white rounded-top-4 d-flex justify-content-between align-items-center">
+        <div class="card shadow border-0 rounded-4 mt-4 futur-glow">
+            <div class="card-header futur-glow-header rounded-top-4 d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="bi bi-briefcase me-2"></i>Vos offres publiées</h5>
-                <a href="/projet_Rabya/recruteurs/ajouter_offre.php" class="btn btn-light btn-modern btn-sm" title="Ajouter une offres">
+                <a href="/projet_Rabya/recruteurs/ajouter_offre.php" class="btn btn-futur-outline btn-sm " style="font-weight: bold; color:white" title="Ajouter une offre">
                     <i class="bi bi-plus-circle me-1"></i> Nouvelle offre
                 </a>
             </div>
@@ -269,13 +318,13 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
                 <?php if (count($offres) > 0): ?>
                     <?php foreach ($offres as $offre): ?>
                         <div class="offre-card">
-                            <h5><i class="bi bi-briefcase-fill me-1 text-primary"></i> <?= htmlspecialchars($offre['titre']) ?></h5>
-                            <p class="mb-1"><i class="bi bi-geo-alt-fill text-muted me-1"></i><strong>Lieu :</strong> <?= htmlspecialchars($offre['lieu']) ?></p>
-                            <p class="mb-1"><i class="bi bi-diagram-3-fill text-muted me-1"></i><strong>Secteur d'activité :</strong> <?= htmlspecialchars($offre['secteur'] ?? '') ?></p>
-                            <p class="mb-1"><i class="bi bi-calendar-check-fill text-muted me-1"></i><strong>Date :</strong> <?= htmlspecialchars($offre['date_publication']) ?></p>
-                            <p><i class="bi bi-card-text text-muted me-1"></i><strong>Description :</strong> <?= nl2br(htmlspecialchars($offre['description'])) ?></p>
+                            <h5><i class="bi bi-briefcase-fill me-1 text-info"></i> <?= htmlspecialchars($offre['titre']) ?></h5>
+                            <p class="mb-1"><i class="bi bi-geo-alt-fill text-secondary me-1"></i><strong>Lieu :</strong> <?= htmlspecialchars($offre['lieu']) ?></p>
+                            <p class="mb-1"><i class="bi bi-diagram-3-fill text-secondary me-1"></i><strong>Secteur d'activité :</strong> <?= htmlspecialchars($offre['secteur'] ?? '') ?></p>
+                            <p class="mb-1"><i class="bi bi-calendar-check-fill text-secondary me-1"></i><strong>Date :</strong> <?= htmlspecialchars($offre['date_publication']) ?></p>
+                            <p><i class="bi bi-card-text text-secondary me-1"></i><strong>Description :</strong> <?= nl2br(htmlspecialchars($offre['description'])) ?></p>
                             <p>
-                                <i class="bi bi-info-circle text-muted me-1"></i>
+                                <i class="bi bi-info-circle text-secondary me-1"></i>
                                 <strong>Statut :</strong>
                                 <?php
                                 if ($offre['statut'] === 'en_attente') {
@@ -289,29 +338,25 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
                                 }
                                 ?>
                             </p>
-                            <a href="/projet_Rabya/recruteurs/voir_candidature.php?id_offre=<?= $offre['id_offre'] ?>" class="btn btn-outline-primary btn-modern btn-sm">
+                            <a href="/projet_Rabya/recruteurs/voir_candidature.php?id_offre=<?= $offre['id_offre'] ?>" class="btn btn-futur-outline btn-sm">
                                 <i class="bi bi-people-fill me-1"></i> Voir les candidatures
                             </a>
                             <div class="text-end mt-2">
                                 <a href="/projet_Rabya/recruteurs/modifier_offre.php?id_offre=<?= $offre['id_offre'] ?>"
-                                    class="btn btn-primary btn-modern btn-sm me-2" title="Modifier">
+                                    class="btn btn-futur btn-sm me-2" title="Modifier">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <a href="supprimer_offre.php?id_offre=<?= $offre['id_offre'] ?>"
-                                    class="btn btn-danger btn-modern btn-sm"
-                                    title="Supprimer"
-                                    onclick="return confirm('Voulez-vous vraiment supprimer cette offre ?');">
-                                    <i class="bi bi-trash3"></i>
-                                </a>
                             </div>
+                            
                         </div>
+                        
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>Vous n'avez publié aucune offre pour le moment.</p>
+                    <p class="text-dark">Vous n'avez publié aucune offre pour le moment.</p>
                 <?php endif; ?>
             </div>
             <div class="d-flex justify-content-between mt-4">
-                <a href="/projet_Rabya/index.php" class="btn btn-secondary btn-modern">
+                <a href="/projet_Rabya/index.php" class="btn btn-futur-outline">
                     <i class="bi bi-arrow-left"></i> Retour
                 </a>
             </div>
@@ -319,13 +364,6 @@ $logoPath = !empty($recruteur['logo']) ? 'dossier/' . htmlspecialchars($recruteu
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Thème sombre/clair toggle
-        document.getElementById('toggle-theme').onclick = function() {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-        };
-        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
-
         // Apparition animée des cartes offres au scroll
         document.addEventListener('DOMContentLoaded', function() {
             function revealSections() {

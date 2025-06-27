@@ -170,7 +170,7 @@
     </nav>
     <!-- Hero Content -->
     <div class="hero-content container">
-      <h1 class="display-4 fw-bold">Bienvenue sur IKBara</h1>
+      <h1 class="display-4 fw-bold">Inscrivez vous en un clic sur IKBara</h1>
       <p class="lead">Votre plateforme de recrutement en ligne.</p>
       <p class="lead"> Que vous cherchiez un emploi ou un candidat, tout commence ici</p>
       <div class="search-bar mt-4">

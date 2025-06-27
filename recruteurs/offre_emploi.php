@@ -4,10 +4,10 @@ require_once __DIR__ . '/../configuration/connexionbase.php';
 
 // Vérification de la session
 session_start();
-if (!isset($_SESSION['id'])) {
-    header("Location: /projet_Rabya/authentification/connexion_recruteur.php?error=non_connecte");
-    exit();
-}
+// if (!isset($_SESSION['id'])) {
+//     header("Location: /projet_Rabya/authentification/connexion_recruteur.php?error=non_connecte");
+//     exit();
+// }
 $id_offre = intval($_GET['id']);
 
 $req = $bdd->prepare("
@@ -105,7 +105,7 @@ $logo_entreprise = (isset($offre['logo']) && !empty($offre['logo']))
                         <!-- Candidature -->
                         <div class="text-center mt-4">
                             <?php if (isset($_SESSION['id_candidat'])): ?>
-                                <form action="postuler.php" method="POST">
+                                <form action="/../projet_Rabya/candidats/postuler.php" method="POST">
                                     <input type="hidden" name="id_offre" value="<?= $offre['id_offre'] ?>">
                                     <button type="submit" class="btn btn-lg btn-primary px-5 fw-bold rounded-pill shadow-sm">
                                         <i class="bi bi-send-check me-1"></i>Postuler à cette offre
@@ -114,7 +114,7 @@ $logo_entreprise = (isset($offre['logo']) && !empty($offre['logo']))
                             <?php else: ?>
                                 <div class="alert alert-warning d-inline-block">
                                     <i class="bi bi-lock-fill"></i>
-                                    <a href="/projet_Rabya/connexion.php" class="text-decoration-none text-primary">Connectez-vous</a> en tant que candidat pour postuler.
+                                    <a href="/../projet_Rabya/authentification/connexion_candidat.php" class="text-decoration-none text-primary">Connectez-vous</a> en tant que candidat pour postuler.
                                 </div>
                                 <div class="mt-3">
                                     <a href="/projet_Rabya/index.php" class="btn btn-outline-secondary rounded-pill px-4">

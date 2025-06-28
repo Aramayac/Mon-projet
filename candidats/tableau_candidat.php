@@ -1,6 +1,13 @@
 <?php
 require_once __DIR__ . '/../configuration/connexionbase.php';
 require_once __DIR__ . '/../candidats/logique_candidat.php';
+$id_offre_prioritaire = $_GET['id_offre'] ?? null;
+$offre_prioritaire = null;
+if ($id_offre_prioritaire) {
+    $stmt = $bdd->prepare("SELECT o.*, r.nom_entreprise, r.secteur FROM offres_emploi o JOIN recruteurs r ON o.id_recruteur = r.id_recruteur WHERE o.id_offre = ?");
+    $stmt->execute([$id_offre_prioritaire]);
+    $offre_prioritaire = $stmt->fetch();
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -435,7 +442,7 @@ require_once __DIR__ . '/../candidats/logique_candidat.php';
         <!-- Section Candidatures -->
         <div id="candidatures" class="content-section section-anim">
             <h3><i class="bi bi-file-earmark-check me-2"></i> Mes Candidatures</h3>
-            <h5>Vous avez déjà <span id="candid-count">0</span> candidatures envoyées</h5>
+            <!-- <h5>Vous avez déjà <span id="candid-count">0</span> candidatures envoyées</h5> -->
             <?php if ($candidatures): ?>
                 <div class="d-none d-md-flex fw-bold border-bottom pb-2 mb-2" style="font-size:1.08rem;">
                     <div class="col-12 col-md-5">Offre</div>

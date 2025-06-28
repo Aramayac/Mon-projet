@@ -46,6 +46,13 @@ if ($secteur) {
     $where[] = "r.secteur LIKE :secteur";
     $params['secteur'] = "%$secteur%";
 }
+// $id_offre_prioritaire = $_GET['id_offre'] ?? null;
+// $offre_prioritaire = null;
+// if ($id_offre_prioritaire) {
+//     $stmt = $bdd->prepare("SELECT o.*, r.nom_entreprise, r.secteur FROM offres_emploi o JOIN recruteurs r ON o.id_recruteur = r.id_recruteur WHERE o.id_offre = ?");
+//     $stmt->execute([$id_offre_prioritaire]);
+//     $offre_prioritaire = $stmt->fetch();
+// }
 
 // Ajoute TOUJOURS cette condition :
 $where[] = "o.statut = 'publiée'";

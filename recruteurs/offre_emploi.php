@@ -104,24 +104,29 @@ $logo_entreprise = (isset($offre['logo']) && !empty($offre['logo']))
                         </div>
                         <!-- Candidature -->
                         <div class="text-center mt-4">
-                            <?php if (isset($_SESSION['id_candidat'])): ?>
-                                <form action="/../projet_Rabya/candidats/postuler.php" method="POST">
-                                    <input type="hidden" name="id_offre" value="<?= $offre['id_offre'] ?>">
-                                    <button type="submit" class="btn btn-lg btn-primary px-5 fw-bold rounded-pill shadow-sm">
-                                        <i class="bi bi-send-check me-1"></i>Postuler à cette offre
-                                    </button>
-                                </form>
-                            <?php else: ?>
-                                <div class="alert alert-warning d-inline-block">
-                                    <i class="bi bi-lock-fill"></i>
-                                    <a href="/../projet_Rabya/authentification/connexion_candidat.php" class="text-decoration-none text-primary">Connectez-vous</a> en tant que candidat pour postuler.
-                                </div>
-                                <div class="mt-3">
-                                    <a href="/projet_Rabya/index.php" class="btn btn-outline-secondary rounded-pill px-4">
-                                        <i class="bi bi-arrow-left"></i> Retour aux offres
-                                    </a>
-                                </div>
-                            <?php endif; ?>
+                            <form action="/projet_Rabya/candidats/postuler.php" method="POST" id="formPostuler">
+                                <input type="hidden" name="id_offre" value="<?= $offre['id_offre'] ?>">
+                                <button type="button" class="btn btn-lg btn-primary px-5 fw-bold rounded-pill shadow-sm"
+                                    onclick="handlePostuler()">
+                                    <i class="bi bi-send-check me-1"></i>Postuler à cette offre
+                                </button>
+                            </form>
+                            <script>
+                                function handlePostuler() {
+                                    <?php if (!isset($_SESSION['id_candidat'])): ?>
+                                        // Non connecté : redirige vers la connexion candidat, avec retour vers cette offre après auth
+                                        window.location = "/projet_Rabya/authentification/connexion_candidat.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>";
+                                    <?php else: ?>
+                                        // Déjà connecté : submit normal
+                                        document.getElementById('formPostuler').submit();
+                                    <?php endif; ?>
+                                }
+                            </script>
+                            <div class="mt-3">
+                                <a href="/projet_Rabya/index.php" class="btn btn-outline-secondary rounded-pill px-4">
+                                    <i class="bi bi-arrow-left"></i> Retour aux offres
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

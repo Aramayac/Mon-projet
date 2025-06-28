@@ -3,22 +3,28 @@ require_once __DIR__ . '/configuration/connexionbase.php';
 require_once __DIR__ . '/includes/header.php';
 
 // Construction dynamique du WHERE
-// Construction dynamique du WHERE
 $where = [];
 $params = [];
 
+// Recherche mot clé
 if (!empty($_GET['motcle'])) {
     $where[] = "(offres_emploi.titre LIKE :motcle OR offres_emploi.description LIKE :motcle)";
     $params[':motcle'] = '%' . $_GET['motcle'] . '%';
 }
+// Recherche localisation
 if (!empty($_GET['localisation'])) {
     $where[] = "offres_emploi.lieu LIKE :localisation";
     $params[':localisation'] = '%' . $_GET['localisation'] . '%';
 }
+// Recherche secteur
 if (!empty($_GET['secteur'])) {
     $where[] = "offres_emploi.secteur LIKE :secteur";
     $params[':secteur'] = '%' . $_GET['secteur'] . '%';
 }
+
+// Ajout du filtre pour offres non expirées
+// Une offre est visible SI sa date_expiration est NULLE OU dans le futur
+$where[] = "(offres_emploi.date_expiration IS NULL OR offres_emploi.date_expiration > CURDATE())";
 
 $sql = "
 SELECT * FROM offres_emploi

@@ -3,6 +3,7 @@ session_start();
 require_once __DIR__ . '/../configuration/connexionbase.php';
 $errors = [];
 
+$redirect = $_POST['redirect'] ?? $_GET['redirect'] ?? '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
@@ -10,8 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($email)) $errors['email'] = "L'email est requis.";
     if (empty($mot_de_passe)) $errors['mot_de_passe'] = "Le mot de passe est requis.";
-
-    //ne pas laisser vide le champ email si l'utilisateur clique sur le bouton mot de passe oublié 
 
     if (empty($errors)) {
         $stmt = $bdd->prepare("SELECT * FROM candidats WHERE email = ?");
@@ -31,7 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ];
                 $_SESSION['role'] = 'candidat';
                 $_SESSION['id_candidat'] = $candidat['id_candidat'];
-                header('Location: /projet_Rabya/candidats/tableau_candidat.php');
+                // Redirection intelligente
+                if (!empty($redirect)) {
+                    header('Location: ' . $redirect);
+                } else {
+                    header('Location: /projet_Rabya/candidats/tableau_candidat.php');
+                }
                 exit();
             }
         } else {
@@ -65,7 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     include '../includes/header3.php';
     ?>
-    <!-- ✅ Formulaire avec contrôle avancé -->
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -84,10 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         <?php endif; ?>
 
-                        <form method="post">
+                        <form method="post" action="">
+                            <?php if (!empty($redirect)): ?>
+                                <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
+                            <?php endif; ?>
                             <div class="mb-3">
                                 <label class="form-label">Adresse Email</label>
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Mot de passe</label>
@@ -101,7 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <i class="bi bi-box-arrow-in-right"></i> Se connecter
                                 </button>
                             </div>
-                            <!--Vous n'avez pas de compte ? Inscrivez-vous-->
                             <div class="text-center mt-3">
                                 <p>Vous n'avez pas de compte ? <a href="/projet_Rabya/candidats/inscription_candidat.php" class="text-decoration-none text-primary">
                                         <i class="bi bi-person-plus"></i>Inscrivez-vous
@@ -109,7 +114,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </p>
                             </div>
                         </form>
-                        <!-- mot de passe oublié -->
                         <div class="text-center mt-3">
                             <a href="/projet_Rabya/candidats/mot_de_passe_oublie.php" class="text-decoration-none">Mot de passe oublié ?</a>
                         </div>
